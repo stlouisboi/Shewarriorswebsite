@@ -1,0 +1,114 @@
+{
+  "theme": "dark",
+  "typography": {
+    "headings": {
+      "family": "Cormorant Garamond",
+      "style": "serif",
+      "weights": ["light", "regular", "medium", "semibold"],
+      "description": "Elegant, high-contrast serif font to establish a sophisticated, authoritative tone."
+    },
+    "body_ui": {
+      "family": "Manrope",
+      "style": "sans-serif",
+      "weights": ["regular", "medium", "bold"],
+      "description": "Clean sans-serif with wide tracking (uppercase) for a modern, luxury feel for subheadings and UI."
+    }
+  },
+  "colors": {
+    "backgrounds": {
+      "primary": "#2C1E16",
+      "secondary": "#3B222E",
+      "tertiary": "#1A1110"
+    },
+    "text": {
+      "primary": "#F5F0E6",
+      "secondary": "#E8E1D5",
+      "accent": "#C5A059"
+    },
+    "accents": {
+      "gold": "#D4AF37",
+      "terracotta": "#C86A53",
+      "berry": "#8C384A",
+      "emerald": "#2E5C4A"
+    }
+  },
+  "visual_enhancers": {
+    "asset_treatment": "Background imagery must utilize grayscale and subtle sepia overlays with mix-blend-multiply to seamlessly integrate into the dark espresso/plum canvas. Avoid pure opacity drops; use CSS blend modes.",
+    "borders_and_surfaces": "Use 1px subtle borders (e.g., border-white/10). Avoid generic glassmorphism unless heavily saturated with dark tones (bg-black/60 with backdrop-blur-xl).",
+    "shadows": "Deep ambient shadows rather than harsh drop shadows. Use inner glows to give depth to cards."
+  },
+  "layouts": {
+    "spacing": "Generous. Use p-12, p-24, py-32 for sections. Overlapping bento layouts or editorial 'Swiss Brutalism' mixed with classic editorial.",
+    "navigation": "Streamlined Navigation: Home | Our Why | Care Map | Gatherings | Stories | Get Involved | Give. Must include the SheWorriers logo. Background should be solid or highly blurred dark tone, not fully transparent.",
+    "footer": "Expanded footer containing legal constraints (501(c)(3), privacy, terms, annual reports). Must also house the Interactive Prayer/Reflection Engine.",
+    "care_map": "Action-oriented directory. Categories: Purpose & Provision, Mind & Wellness, Faith & Flourishing, Girls & Teens, Housing & Shelter.",
+    "immediate_help": "Highly visible, permanent 'Immediate Help' banner (988/911) routing to crisis pathways. Should use Accent Emerald to signal safety/medical, sticky or fixed positioned.",
+    "our_why": "Four impact pillars: Connect, Equip, Restore, Flourish. Use large serif numbers and spacious column grids."
+  },
+  "motion": {
+    "hero_parallax": "Subtle, multi-layered parallax scroll effect on the homepage hero section. Background image, editorial decorative blocks, and text move at slightly different speeds.",
+    "scroll_reveal": "Cards, pillars, and typography fade in and drift upward softly as they enter the viewport. Use framer-motion.",
+    "prayer_engine": "Private, daily reflection component in global footer. Users submit prayer request/worry. Form utilizes a serene, timed animation where the text softly blurs and dissolves into a comforting confirmation message."
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1580824469841-49c0f1401393?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMGdyb3VuZGluZyUyMG5hdHVyZSUyMHRleHR1cmUlMjBkYXJrfGVufDB8fHx8MTc4NjQwMzI0Nnww&ixlib=rb-4.1.0&q=85",
+        "category": "Hero Background / Global Texture",
+        "description": "Black and brown abstract painting, to be used with multiply blend mode."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1527049979667-990f1d0d8e7f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGdyb3VuZGluZyUyMG5hdHVyZSUyMHRleHR1cmUlMjBkYXJrfGVufDB8fHx8MTc4NjQwMzI0Nnww&ixlib=rb-4.1.0&q=85",
+        "category": "Section Background",
+        "description": "Grayscale rock formation for grounding texture, applied with sepia overlay."
+      },
+      {
+        "url": "https://images.unsplash.com/flagged/photo-1574319523332-4cadaa531506?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwyfHx3b21lbiUyMGNvbW11bml0eSUyMGdhdGhlcmluZyUyMGdhdGhlcmluZyUyMHdhcm0lMjBsaWdodGluZ3xlbnwwfHx8fDE3ODY0MDMyNDZ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "Gatherings / Stories",
+        "description": "Woman in community gathering, warm light."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1760367119608-2b0b33786c94?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHw0fHx3b21lbiUyMGNvbW11bml0eSUyMGdhdGhlcmluZyUyMHdhcm0lMjBsaWdodGluZ3xlbnwwfHx8fDE3ODY0MDMyNDZ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "Faith & Flourishing / Our Why",
+        "description": "People holding lit candles in darkness. Very grounding and emotional."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHx3b21lbiUyMGNhcmVlciUyMHN1cHBvcnQlMjBtb2Rlcm58ZW58MHx8fHwxNzg2NDAzMjQ2fDA&ixlib=rb-4.1.0&q=85",
+        "category": "Purpose & Provision (Care Map)",
+        "description": "Women talking/laptop, career support."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1472224371017-08207f84aaae?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwzfHxzYWZlJTIwcGVhY2VmdWwlMjB3YXJtJTIwaG91c2luZ3xlbnwwfHx8fDE3ODY0MDMyNDZ8MA&ixlib=rb-4.1.0&q=85",
+        "category": "Housing & Shelter (Care Map)",
+        "description": "Bungalow landscape with warm lighting."
+      }
+    ]
+  },
+  "components": {
+    "care_map_card": "Uses soft borders, internal padding (p-8), hover to slightly lift. Iconography paired with uppercase Manrope.",
+    "prayer_form": "Minimal inputs. On submit, state changes to true, triggering framer-motion blur (filter: blur(10px)) and opacity 0 on form, swapping to confirmation message."
+  },
+  "instructions_to_main_agent": [
+    "You are building an editorial, premium landing page for a nonprofit.",
+    "Use ONLY raw HTML/Tailwind for marketing layout structures; avoid Shadcn Card wrappers if they restrict overlapping design.",
+    "Apply Framer Motion for scroll reveals, parallax hero, and the blur-dissolve on the prayer form.",
+    "Images MUST have grayscale + sepia mix-blend-multiply CSS to tint them to the espresso/plum canvas. e.g., mix-blend-multiply grayscale sepia-[.3] over a dark background.",
+    "Never use purely transparent headers; use an espresso or plum solid/blur fill so the cream text remains readable.",
+    "Add wide tracking to uppercase UI text (tracking-widest uppercase).",
+    "Ensure 'Immediate Help' banner is highly visible, maybe fixed top or sticky, using the emerald accent color to stand out but fit the aesthetic.",
+    "DO NOT use generic centered generic layouts. Use asymmetrical grids.",
+    "Add data-testid to all interactive elements."
+  ],
+  "accessibility": {
+    "contrast": "Ensure the soft cream text passes APCA contrast on espresso/plum backgrounds. Emerald accent text needs testing if on dark.",
+    "reduced_motion": "Wrap Framer Motion parallax/reveals to respect user preference."
+  },
+  "universal_guidelines": [
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Never use AI assistant emojis for icons. Use lucide-react or @phosphor-icons/react.",
+    "Do not center align app container text globally.",
+    "Use modern button styles relevant to the app style.",
+    "Every interaction needs micro-animations - hover states, transitions."
+  ]
+}

@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Manrope', ui-sans-serif, sans-serif;
+    background-color: #2C1E16;
+    color: #F5F0E6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background-color: #C5A059;
+    color: #1A1110;
+}
+
+@layer base {
+    :root {
+        --background: 24 30% 13%;
+        --foreground: 44 39% 93%;
+        --card: 24 30% 13%;
+        --card-foreground: 44 39% 93%;
+        --popover: 24 30% 13%;
+        --popover-foreground: 44 39% 93%;
+        --primary: 42 45% 57%;
+        --primary-foreground: 24 30% 10%;
+        --secondary: 336 26% 18%;
+        --secondary-foreground: 44 39% 93%;
+        --muted: 24 20% 22%;
+        --muted-foreground: 38 22% 68%;
+        --accent: 336 26% 18%;
+        --accent-foreground: 44 39% 93%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 44 39% 93%;
+        --border: 38 15% 30%;
+        --input: 38 15% 30%;
+        --ring: 42 45% 57%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-color: inherit;
+        border-right-color: inherit;
+        border-bottom-color: inherit;
+        border-left-color: inherit;
+    }
+}
+
+@layer utilities {
+    .texture-image {
+        filter: grayscale(1) sepia(0.3);
+        mix-blend-mode: multiply;
+    }
+    .eyebrow {
+        @apply font-sans text-xs font-semibold uppercase tracking-[0.3em] text-softgold;
+    }
+}

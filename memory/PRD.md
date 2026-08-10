@@ -1,0 +1,41 @@
+# SheWorriers Foundation — Landing Site PRD
+
+## Original Problem Statement
+Build a landing page for SheWorriers Foundation with: dark earthy palette (espresso/plum canvas, cream text, muted gold/terracotta/berry/emerald accents); editorial typography (high-contrast serif headings + wide-tracked uppercase sans UI); grayscale/sepia multiply-blend image treatment; custom logo in nav + footer; streamlined nav (Home | Our Why | Care Map | Gatherings | Stories | Get Involved | Give); expanded footer with legal (501(c)(3), privacy, terms, annual reports); Care Map resources hub with 5 categories (Purpose & Provision, Mind & Wellness, Faith & Flourishing, Girls & Teens, Housing & Shelter); permanent Immediate Help banner (988/911); Our Why page with four pillars (Connect, Equip, Restore, Flourish); interactive Prayer/Reflection engine in footer with blur-dissolve confirmation animation; Framer Motion hero parallax and scroll reveals.
+
+## Architecture
+- Frontend: React 19 + react-router-dom v7, Tailwind CSS, framer-motion, lucide-react, sonner. Pages in /app/frontend/src/pages/, shared components in /app/frontend/src/components/ (Navbar, ImmediateHelp, Footer, PrayerEngine, Reveal, Logo). Content data in /app/frontend/src/data/resources.js.
+- Backend: FastAPI at /app/backend/server.py. POST /api/prayers stores confidential prayer requests in MongoDB (prayer_requests collection). GET /api/ health check.
+- DB: MongoDB via MONGO_URL env var.
+
+## User Personas
+- A woman in crisis needing immediate professional help (988/911 banner).
+- A woman seeking practical resources (Care Map).
+- A prospective donor or volunteer (Give, Get Involved).
+- A community member wanting to leave a private prayer/reflection.
+
+## Core Requirements (static)
+1. Dark editorial theming per palette above — DONE
+2. 7 nav destinations as separate routed pages — DONE
+3. Care Map with 5 categories and actionable resources — DONE
+4. Permanent Immediate Help banner with 988/741741/911 — DONE
+5. Our Why with 4 pillars — DONE
+6. Footer prayer engine with blur-dissolve animation, persisted to backend — DONE
+7. Hero multi-layer parallax + scroll reveals (respect reduced motion) — DONE
+8. Logo in header and footer — DONE
+9. Legal footer (501(c)(3), privacy, terms, annual reports) — DONE
+
+## Implemented
+- 2026-08-10: Full multi-page site build; prayer API + MongoDB persistence; prayer blur-dissolve verified end-to-end; hero parallax; Immediate Help banner; all pages verified via screenshots.
+
+## Backlog / Remaining
+- P0: None blocking.
+- P1: Real donation processing (Give page tiers are currently informational toast — no payment wired).
+- P1: Real Privacy Policy / Terms / Annual Report documents or pages (footer links are placeholders).
+- P2: Admin view for prayer team to read requests; email capture/newsletter; CMS for gatherings & stories.
+- Note: Gatherings, Stories, and some Care Map partner entries are sample/demo content pending real foundation data.
+
+## Next Tasks
+- Wire Stripe for donations.
+- Build legal pages.
+- Prayer team inbox.
