@@ -15,15 +15,15 @@ export const IMAGES = {
 
 export const CARE_CATEGORIES = [
   {
-    id: "purpose-provision",
-    name: "Purpose & Provision",
-    tagline: "Career, work, and financial breathing room",
+    id: "career-purpose",
+    name: "Career & Purpose",
+    tagline: "Job-search guides, mentorship, and financial-forward resources",
     image: IMAGES.career,
     accent: "text-softgold",
     resources: [
       {
         name: "Career OneStop",
-        description: "Free job search, training, and resume support from the U.S. Department of Labor.",
+        description: "Free job-search guides, training finders, and resume tools from the U.S. Department of Labor.",
         action: { label: "careeronestop.org", href: "https://www.careeronestop.org" },
       },
       {
@@ -32,23 +32,33 @@ export const CARE_CATEGORIES = [
         action: { label: "dressforsuccess.org", href: "https://dressforsuccess.org" },
       },
       {
-        name: "211 Resource Line",
-        description: "Dial 2-1-1 for local help with bills, food, and essential services — free and confidential.",
-        action: { label: "Dial 211", href: "tel:211" },
+        name: "SBA Women's Business Resources",
+        description: "Entrepreneurship training, funding guidance, and local Women's Business Centers.",
+        action: { label: "sba.gov", href: "https://www.sba.gov" },
+      },
+      {
+        name: "Provision Workshop & Mentor Interest",
+        description: "Our monthly resume and budgeting workshop — plus a mentor-interest pathway if you want a sister in your corner.",
+        action: { label: "See Gatherings", href: "/gatherings", internal: true },
       },
     ],
   },
   {
     id: "mind-wellness",
     name: "Mind & Wellness",
-    tagline: "Counseling, calm, and mental health care",
+    tagline: "Education, self-care guides, and trusted referrals",
     image: IMAGES.rockTexture,
     accent: "text-terracotta",
     resources: [
       {
-        name: "988 Suicide & Crisis Lifeline",
-        description: "Free, 24/7 support for anyone in emotional distress or crisis. Call or text 988.",
-        action: { label: "Call or text 988", href: "tel:988" },
+        name: "Therapy for Black Girls",
+        description: "A therapist-finder and podcast dedicated to the mental wellness of Black women and girls.",
+        action: { label: "therapyforblackgirls.com", href: "https://www.therapyforblackgirls.com" },
+      },
+      {
+        name: "The Loveland Foundation",
+        description: "Therapy fund and mental-wellness resources for Black women and girls.",
+        action: { label: "thelovelandfoundation.org", href: "https://thelovelandfoundation.org" },
       },
       {
         name: "NAMI Helpline",
@@ -56,32 +66,37 @@ export const CARE_CATEGORIES = [
         action: { label: "1-800-950-6264", href: "tel:18009506264" },
       },
       {
-        name: "Crisis Text Line",
-        description: "Text HOME to 741741 to reach a live, trained counselor — any hour, free of charge.",
-        action: { label: "Text 741741", href: "sms:741741" },
+        name: "Quiet Hour — Guided Reflection",
+        description: "Our weekly self-care rhythm: scripture, silence, and journaling before the day begins.",
+        action: { label: "See Gatherings", href: "/gatherings", internal: true },
       },
     ],
   },
   {
     id: "faith-flourishing",
     name: "Faith & Flourishing",
-    tagline: "Spiritual rhythms, prayer, and hope",
+    tagline: "Sister Circles, Bible study, prayer, and worship",
     image: IMAGES.candles,
     accent: "text-gold",
     resources: [
       {
-        name: "Weekly Prayer Circle",
-        description: "Our own gathering of women who pray over every request left with the foundation.",
+        name: "Sacred Sister Circles",
+        description: "Intimate weekly study, prayer, and deep soul-care with women who know your name.",
         action: { label: "See Gatherings", href: "/gatherings", internal: true },
       },
       {
-        name: "Daily Reflection",
-        description: "Leave a worry or a prayer in the reflection space below — held in strict confidence.",
-        action: { label: "Leave a reflection", href: "#prayer-engine", anchor: true },
+        name: "Prayer & Reflection",
+        description: "Leave a worry or a prayer in the confidential space below — our sisterhood will quietly cover you this week.",
+        action: { label: "Leave a prayer", href: "#prayer-engine", anchor: true },
       },
       {
-        name: "Local Church Partners",
-        description: "We maintain relationships with welcoming congregations and chaplains across the region.",
+        name: "Quiet Hour Bible Study",
+        description: "Thirty unhurried minutes of scripture and journaling, Thursday mornings online and in person.",
+        action: { label: "See Gatherings", href: "/gatherings", internal: true },
+      },
+      {
+        name: "Mentorship Interest",
+        description: "Want a faith mentor — or to become one? Start the conversation here.",
         action: { label: "Get Involved", href: "/get-involved", internal: true },
       },
     ],
@@ -89,10 +104,15 @@ export const CARE_CATEGORIES = [
   {
     id: "girls-teens",
     name: "Girls & Teens",
-    tagline: "Mentorship and safe spaces for the next generation",
+    tagline: "Parent tools, study guides, and mentoring — with guardians involved",
     image: IMAGES.gathering,
     accent: "text-berry",
     resources: [
+      {
+        name: "Becoming Her",
+        description: "Our mentorship and study group for teen girls — always with parent or guardian involvement.",
+        action: { label: "See Gatherings", href: "/gatherings", internal: true },
+      },
       {
         name: "Big Brothers Big Sisters",
         description: "One-to-one mentoring that helps girls thrive in school and in life.",
@@ -100,7 +120,7 @@ export const CARE_CATEGORIES = [
       },
       {
         name: "Girls Inc.",
-        description: "Research-based programs that equip girls to navigate challenges and lead.",
+        description: "Research-based programs that equip girls to navigate school pressure and lead.",
         action: { label: "girlsinc.org", href: "https://girlsinc.org" },
       },
       {
@@ -110,29 +130,33 @@ export const CARE_CATEGORIES = [
       },
     ],
   },
+];
+
+export const URGENT_HELP = [
   {
-    id: "housing-shelter",
-    name: "Housing & Shelter",
-    tagline: "Emergency shelter, rental assistance, and safe houses",
-    image: IMAGES.housing,
-    accent: "text-emerald",
-    resources: [
-      {
-        name: "National Domestic Violence Hotline",
-        description: "24/7 confidential support and safe-house referrals: 1-800-799-7233.",
-        action: { label: "1-800-799-7233", href: "tel:18007997233" },
-      },
-      {
-        name: "211 Shelter & Rent Assistance",
-        description: "Dial 2-1-1 to find emergency shelter beds and rental assistance programs near you.",
-        action: { label: "Dial 211", href: "tel:211" },
-      },
-      {
-        name: "HUD Resource Locator",
-        description: "Find affordable housing and HUD-approved counseling agencies in your area.",
-        action: { label: "hud.gov", href: "https://www.hud.gov" },
-      },
-    ],
+    name: "988 Suicide & Crisis Lifeline",
+    description: "Free, 24/7 support for anyone in emotional distress or crisis.",
+    action: { label: "Call or text 988", href: "tel:988" },
+  },
+  {
+    name: "Emergency Services",
+    description: "If you or someone near you is in immediate danger, call 911 now.",
+    action: { label: "Call 911", href: "tel:911" },
+  },
+  {
+    name: "National Domestic Violence Hotline",
+    description: "24/7 confidential support, safety planning, and safe-house referrals.",
+    action: { label: "1-800-799-7233", href: "tel:18007997233" },
+  },
+  {
+    name: "Crisis Text Line",
+    description: "Text HOME to 741741 to reach a live, trained counselor — any hour, free of charge.",
+    action: { label: "Text 741741", href: "sms:741741" },
+  },
+  {
+    name: "211 — Shelter & Essentials",
+    description: "Emergency shelter beds, rental assistance, and food programs near you.",
+    action: { label: "Dial 211", href: "tel:211" },
   },
 ];
 
@@ -140,21 +164,21 @@ export const PILLARS = [
   {
     number: "01",
     name: "Connect",
-    text: "No woman should worry alone. We build circles — small, steady gatherings where women are known by name and met without judgment.",
+    text: "Sisterhood and gatherings — circles where women are known by name and met without judgment.",
   },
   {
     number: "02",
     name: "Equip",
-    text: "Worry shrinks when practical needs are met. We point women to real help: career support, counseling, shelter, and financial relief.",
+    text: "Career tools and mentorship — practical resources that turn worry into a workable next step.",
   },
   {
     number: "03",
     name: "Restore",
-    text: "Healing takes time and gentleness. Through prayer, reflection, and patient presence, we make room for women to breathe again.",
+    text: "Wellness education and trusted referrals — because healing begins with honest, safe support.",
   },
   {
     number: "04",
     name: "Flourish",
-    text: "Our hope is not survival but abundance — women rising into purpose, faith, and joy, and carrying others with them.",
+    text: "Faith, worship, and purpose — our hope is not survival but abundance, shared sister to sister.",
   },
 ];

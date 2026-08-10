@@ -58,7 +58,8 @@ module.exports = {
         ring: 'hsl(var(--ring))'
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        garamond: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         sans: ['Manrope', 'ui-sans-serif', 'sans-serif']
       },
       keyframes: {

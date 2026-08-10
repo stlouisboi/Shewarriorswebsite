@@ -27,6 +27,10 @@ Build a landing page for SheWorriers Foundation with: dark earthy palette (espre
 
 ## Implemented
 - 2026-08-10: Full multi-page site build; prayer API + MongoDB persistence; prayer blur-dissolve verified end-to-end; hero parallax; Immediate Help banner; all pages verified via screenshots.
+- 2026-08-10: Legal pages (Privacy, Terms, Annual Reports) with real plain-language content; footer links wired.
+- 2026-08-10: Real logo integrated (white background keyed out, strokes recolored to brand gold/sage, tagline cropped out per user request); nav + footer.
+- 2026-08-10: Home page redesigned to user's mockups: editorial centered hero ("For the woman who holds everyone else together…"), "You don't have to figure it out alone" 3-card section, Psalm 34:5 foundation section, "For every season / for every sister", The Altar release ritual (client-side only, nothing saved), Transformation card, arched Our Gatherings cards.
+- 2026-08-10: Care Map restructured per user sitemap: Need Help Now (emerald crisis section with exact disclaimer), Career & Purpose, Mind & Wellness, Faith & Flourishing, Girls & Teens. Our Why: "What We're Building" + four pillars + founder note. Get Involved: Join the Sisterhood / Become a Mentor / Volunteer / Partner. Footer redesigned: altar card, "Your seat is waiting" CTAs, anchor verse, link columns, big logo, legal row. Winston-Salem / Piedmont Triad location added across site.
 
 ## Backlog / Remaining
 - P0: None blocking.

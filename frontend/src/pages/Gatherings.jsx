@@ -55,7 +55,8 @@ export default function Gatherings() {
               Come sit with us. <em className="text-softgold">There is a chair with your name on it.</em>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg">
-              Our gatherings are small on purpose. You will never be asked to perform,
+              Our gatherings happen across Winston-Salem and the Piedmont Triad —
+              and they are small on purpose. You will never be asked to perform,
               fix yourself, or have it together. Bring your worry; leave a little lighter.
             </p>
           </Reveal>

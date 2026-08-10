@@ -12,6 +12,9 @@ import Gatherings from "@/pages/Gatherings";
 import Stories from "@/pages/Stories";
 import GetInvolved from "@/pages/GetInvolved";
 import Give from "@/pages/Give";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
+import AnnualReports from "@/pages/AnnualReports";
 
 const ScrollManager = () => {
   const { pathname, hash } = useLocation();
@@ -44,6 +47,9 @@ function App() {
           <Route path="/stories" element={<Stories />} />
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/give" element={<Give />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/annual-reports" element={<AnnualReports />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

@@ -1,206 +1,439 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { Briefcase, Heart, BookOpen, ArrowRight, Flame } from "lucide-react";
 import { Reveal } from "../components/Reveal";
-import { IMAGES, PILLARS, CARE_CATEGORIES } from "../data/resources";
+
+const GoldDash = () => (
+  <span aria-hidden="true" className="mx-auto block h-px w-10 bg-gold/70" />
+);
+
+const CircularBadge = () => (
+  <div aria-hidden="true" className="absolute bottom-14 right-16 hidden lg:block">
+    <div className="relative h-28 w-28 animate-[spin_24s_linear_infinite]">
+      <svg viewBox="0 0 100 100" className="h-full w-full">
+        <defs>
+          <path id="badge-circle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#C5A059" strokeOpacity="0.4" strokeWidth="0.75" />
+        <text fill="#C5A059" fontSize="8.2" letterSpacing="2.5" style={{ fontFamily: "Manrope, sans-serif", textTransform: "uppercase" }}>
+          <textPath href="#badge-circle">Sacred Sisterhood • Sacred Sisterhood •</textPath>
+        </text>
+      </svg>
+    </div>
+  </div>
+);
 
 const Hero = () => {
   const ref = useRef(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "22%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "-18%"]);
-  const blockY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "-40%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "-16%"]);
+  const decoY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "30%"]);
 
   return (
-    <section ref={ref} data-testid="hero-section" className="relative flex min-h-[92vh] items-center overflow-hidden">
-      <motion.div style={{ y: bgY }} className="absolute inset-0 -z-10">
-        <img
-          src={IMAGES.heroTexture}
-          alt=""
-          className="texture-image h-[120%] w-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-espresso/70 via-espresso/40 to-espresso" />
-      </motion.div>
+    <section ref={ref} data-testid="hero-section" className="relative flex min-h-[100vh] items-center overflow-hidden bg-espresso">
+      <motion.div style={{ y: decoY }} aria-hidden="true" className="absolute inset-y-0 right-0 w-14 bg-plum sm:w-24" />
+      <motion.div style={{ y: decoY }} aria-hidden="true" className="absolute -top-6 right-10 h-14 w-40 rounded-full bg-terracotta sm:right-20" />
+      <motion.div style={{ y: decoY }} aria-hidden="true" className="absolute bottom-24 left-[6%] hidden h-40 w-40 rounded-full border border-gold/20 lg:block" />
 
-      <motion.div
-        style={{ y: blockY }}
-        aria-hidden="true"
-        className="absolute right-[8%] top-[12%] -z-0 hidden h-64 w-48 border border-gold/25 lg:block"
-      />
-      <motion.div
-        style={{ y: blockY }}
-        aria-hidden="true"
-        className="absolute bottom-[18%] left-[4%] hidden h-40 w-40 bg-plum/60 lg:block"
-      />
-
-      <motion.div style={{ y: textY }} className="mx-auto w-full max-w-7xl px-6 py-24">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="eyebrow"
-        >
-          A foundation for women who worry
-        </motion.p>
+      <motion.div style={{ y: textY }} className="relative mx-auto w-full max-w-5xl px-6 py-28 text-center">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.1 }}>
+          <GoldDash />
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 max-w-3xl font-serif text-4xl font-light leading-[1.08] text-cream sm:text-5xl lg:text-6xl"
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl lg:text-6xl"
         >
-          Set down what you were never meant to{" "}
-          <em className="text-softgold">carry alone.</em>
+          For the woman who holds
+          <br />
+          <em className="normal-case text-terracotta">everyone else</em> together.
+          <br />
+          This is a place for you to
+          <br />
+          be <em className="normal-case text-softgold">held, too.</em>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-8 max-w-xl text-base leading-relaxed text-parchment/85 md:text-lg"
+          transition={{ duration: 0.8, delay: 0.45 }}
+          className="mx-auto mt-9 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg"
         >
-          SheWorriers Foundation surrounds women with community, practical care,
-          and the quiet confidence of faith — from crisis to calling.
+          A faith-filled sisterhood rooted in the legacy, resilience, joy, and
+          worship of Black women.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.65 }}
-          className="mt-10 flex flex-wrap items-center gap-5"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-11 flex flex-wrap items-center justify-center gap-5"
         >
           <Link
             to="/care-map"
-            data-testid="hero-care-map-cta"
-            className="flex items-center gap-2 rounded-full bg-gold px-8 py-3.5 text-xs font-bold uppercase tracking-[0.22em] text-ink transition-all duration-300 hover:bg-softgold hover:shadow-[0_0_28px_rgba(212,175,55,0.35)]"
+            data-testid="hero-find-circle-cta"
+            className="rounded-full bg-terracotta px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-cream transition-all duration-300 hover:bg-[#d47a62] hover:shadow-[0_0_28px_rgba(200,106,83,0.4)]"
           >
-            Find Care Now
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            Find Your Circle
           </Link>
           <Link
-            to="/our-why"
-            data-testid="hero-our-why-cta"
-            className="rounded-full border border-cream/30 px-8 py-3.5 text-xs font-bold uppercase tracking-[0.22em] text-cream transition-all duration-300 hover:border-softgold hover:text-softgold"
+            to="/gatherings"
+            data-testid="hero-sit-with-us-cta"
+            className="rounded-full border border-gold/60 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-gold transition-all duration-300 hover:bg-gold/10 hover:border-gold"
           >
-            Our Why
+            Come Sit With Us
           </Link>
         </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.85 }}
+          className="mt-14 font-garamond text-xl italic leading-relaxed text-parchment/75 sm:text-2xl"
+        >
+          <p>You have been strong.</p>
+          <p>You are allowed to be soft.</p>
+          <p>You are allowed to release it.</p>
+        </motion.div>
       </motion.div>
+      <CircularBadge />
     </section>
   );
 };
 
-const PillarsPreview = () => (
-  <section data-testid="pillars-preview" className="relative bg-espresso">
+const SUPPORT_CARDS = [
+  {
+    icon: Briefcase,
+    title: "Purpose & Provision",
+    text: "Career support, leadership, work, and financial-forward resources",
+    cta: "Find Career Support",
+    to: "/care-map#purpose-provision",
+  },
+  {
+    icon: Heart,
+    title: "Mind & Wellness",
+    text: "Mental-wellness education, trusted referrals, and a place to exhale",
+    cta: "Explore Wellness Support",
+    to: "/care-map#mind-wellness",
+  },
+  {
+    icon: BookOpen,
+    title: "Faith & Flourishing",
+    text: "Prayer, mentoring, Scripture, worship, and sisterhood",
+    cta: "Grow in Faith",
+    to: "/care-map#faith-flourishing",
+  },
+];
+
+const SupportSection = () => (
+  <section data-testid="support-section" className="bg-plum">
+    <div className="mx-auto max-w-7xl px-6 py-24 text-center sm:py-32">
+      <Reveal>
+        <GoldDash />
+        <h2 className="mt-10 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
+          You don't have to figure it out
+          <br />
+          <em className="normal-case text-terracotta">alone.</em>
+        </h2>
+        <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg">
+          Whether you need career direction, support for your mental well-being,
+          or a place to grow spiritually, we'll help you find a next step.
+        </p>
+      </Reveal>
+      <div className="mt-16 grid gap-6 md:grid-cols-3">
+        {SUPPORT_CARDS.map((c, i) => (
+          <Reveal key={c.title} delay={i * 0.1}>
+            <div
+              data-testid={`support-card-${i}`}
+              className="group flex h-full flex-col items-center rounded-2xl border border-white/10 bg-espresso/70 px-8 py-12 transition-all duration-500 hover:-translate-y-1 hover:border-softgold/40"
+            >
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/10 transition-colors duration-500 group-hover:bg-gold/20">
+                <c.icon className="h-7 w-7 text-gold" aria-hidden="true" />
+              </span>
+              <h3 className="mt-8 font-serif text-2xl font-semibold text-cream">{c.title}</h3>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-parchment/70">{c.text}</p>
+              <Link
+                to={c.to}
+                data-testid={`support-cta-${i}`}
+                className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-softgold transition-colors duration-300 hover:text-gold"
+              >
+                {c.cta}
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <Reveal delay={0.15}>
+        <p data-testid="support-strip" className="mt-20 border-y border-white/10 py-6 text-xs font-semibold uppercase tracking-[0.3em] text-parchment/60">
+          Black-woman-centered. Faith-filled. Open to every sister seeking support.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+);
+
+const SEASONS = [
+  "The girl learning to name her fears",
+  "The teen trying to find her identity",
+  "The mother holding everyone together",
+  "The woman rebuilding after a hard season",
+  "The mentor with wisdom worth passing on",
+  "The sister ready to worship again",
+];
+
+const FoundationSection = () => (
+  <section data-testid="foundation-section" className="bg-espresso">
+    <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:py-32">
+      <Reveal>
+        <p className="eyebrow">Our Foundation</p>
+        <blockquote className="mt-10 font-garamond text-4xl font-light italic leading-snug text-cream sm:text-5xl">
+          "Those who look to Him are radiant; their faces are never covered with shame."
+        </blockquote>
+        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.3em] text-parchment/60">Psalm 34:5</p>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <div className="mt-20 border-t border-white/10 pt-20">
+          <p className="eyebrow">Who We Are</p>
+          <h2 className="mt-8 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
+            For every season.
+            <br />
+            <em className="normal-case text-terracotta">for every sister.</em>
+          </h2>
+          <ul className="mt-12 flex flex-col gap-5">
+            {SEASONS.map((s, i) => (
+              <li key={s} data-testid={`season-${i}`} className="font-garamond text-xl italic text-parchment/80 sm:text-2xl">
+                {s}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-14 border-t border-white/10 pt-10 font-garamond text-2xl italic text-cream sm:text-3xl">
+            The table is set, sister. Come as you are.
+          </p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+);
+
+const AltarSection = () => {
+  const [message, setMessage] = useState("");
+  const [state, setState] = useState("idle"); // idle | dissolving | done
+  const reduce = useReducedMotion();
+
+  const release = (e) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+    setState("dissolving");
+    setTimeout(() => setState("done"), reduce ? 100 : 2400);
+  };
+
+  const reset = () => {
+    setMessage("");
+    setState("idle");
+  };
+
+  return (
+    <section data-testid="altar-section" className="bg-plum">
+      <div className="mx-auto max-w-3xl px-6 py-24 text-center sm:py-32">
+        <Reveal>
+          <p className="eyebrow">The Altar</p>
+          <h2 className="mt-8 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
+            Leave it <em className="normal-case text-terracotta">here.</em>
+          </h2>
+          <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-parchment/85 md:text-lg">
+            Type a worry, a prayer, or a heavy thought. When you are ready,
+            release it. This space is completely private — nothing is saved,
+            nothing is sent.
+          </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="relative mt-12 min-h-[220px]">
+            <AnimatePresence mode="wait">
+              {state !== "done" ? (
+                <motion.form
+                  key="altar-form"
+                  data-testid="altar-form"
+                  onSubmit={release}
+                  initial={false}
+                  animate={
+                    state === "dissolving" && !reduce
+                      ? { opacity: 0, filter: "blur(12px)", y: -14 }
+                      : { opacity: 1, filter: "blur(0px)", y: 0 }
+                  }
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 2.2, ease: "easeInOut" }}
+                  className="flex flex-col items-center gap-6"
+                >
+                  <textarea
+                    data-testid="altar-textarea"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="What is weighing on your heart today?"
+                    required
+                    maxLength={2000}
+                    rows={4}
+                    disabled={state === "dissolving"}
+                    className="w-full resize-none rounded-2xl border border-white/15 bg-espresso/60 px-6 py-5 font-garamond text-lg italic text-cream placeholder:text-parchment/40 focus:border-softgold/60 focus:outline-none transition-colors duration-300"
+                  />
+                  <button
+                    data-testid="altar-release-button"
+                    type="submit"
+                    disabled={state === "dissolving"}
+                    className="rounded-full bg-gold px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] text-ink transition-all duration-300 hover:bg-softgold hover:shadow-[0_0_28px_rgba(212,175,55,0.35)] disabled:opacity-50"
+                  >
+                    Release It
+                  </button>
+                </motion.form>
+              ) : (
+                <motion.div
+                  key="altar-confirmation"
+                  data-testid="altar-confirmation"
+                  initial={reduce ? false : { opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  className="flex min-h-[220px] flex-col items-center justify-center gap-4"
+                >
+                  <Flame className="h-8 w-8 text-gold" aria-hidden="true" />
+                  <p className="font-garamond text-3xl font-light italic text-cream sm:text-4xl">
+                    It is released now.
+                  </p>
+                  <p className="max-w-md text-sm leading-relaxed text-parchment/75">
+                    Breathe deep, sister. What you set down here stays here.
+                  </p>
+                  <button
+                    data-testid="altar-reset-button"
+                    onClick={reset}
+                    className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-softgold underline-offset-4 hover:underline"
+                  >
+                    Write another
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+};
+
+const TRANSFORMATIONS = [
+  ["Worry", "Worship"],
+  ["Isolation", "Sisterhood"],
+  ["Shame", "Radiance"],
+  ["Fear", "Faith"],
+  ["Surviving", "Flourishing"],
+];
+
+const TransformationSection = () => (
+  <section data-testid="transformation-section" className="bg-espresso">
+    <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 py-24 sm:py-32 lg:grid-cols-2">
+      <Reveal>
+        <span aria-hidden="true" className="block h-px w-10 bg-gold/70" />
+        <h2 className="mt-10 font-serif text-4xl font-semibold uppercase leading-[1.2] tracking-wide text-cream sm:text-5xl">
+          A softer place to <em className="normal-case text-terracotta">land.</em>
+          <br />
+          A stronger way to <em className="normal-case text-softgold">rise.</em>
+        </h2>
+        <p className="mt-8 max-w-md text-base leading-relaxed text-parchment/80 md:text-lg">
+          We are building a sanctuary where heavy burdens are exchanged for deep
+          peace. Step by step, we walk together out of the shadows.
+        </p>
+      </Reveal>
+      <Reveal delay={0.12}>
+        <div data-testid="transformation-card" className="rounded-2xl border border-white/10 bg-plum/60 p-8 sm:p-12">
+          <p className="eyebrow">The Transformation</p>
+          <div className="mt-8 flex flex-col gap-6">
+            {TRANSFORMATIONS.map(([from, to], i) => (
+              <div key={from} data-testid={`transformation-row-${i}`} className="flex items-baseline gap-4">
+                <span className="shrink-0 font-garamond text-sm italic text-parchment/50">From</span>
+                <span className="font-serif text-xl font-medium text-cream">{from}</span>
+                <span aria-hidden="true" className="mx-2 h-px flex-1 bg-white/15" />
+                <span className="font-serif text-xl font-medium italic text-terracotta">{to}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 border-t border-gold/30 pt-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-parchment/60">
+              Intergenerational mentorship & soul-care spaces
+            </p>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+);
+
+const GATHERINGS = [
+  {
+    name: "Sacred Sister Circles",
+    tag: "Intimate study, prayer, and deep soul-care",
+    image: "https://images.unsplash.com/photo-1760367119608-2b0b33786c94?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHw0fHx3b21lbiUyMGNvbW11bml0eSUyMGdhdGhlcmluZyUyMHdhcm0lMjBsaWdodGluZ3xlbnwwfHx8fDE3ODY0MDMyNDZ8MA&ixlib=rb-4.1.0&q=85",
+  },
+  {
+    name: "Roots & Wings Mentorship",
+    tag: "Intergenerational guidance and connection",
+    image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHx3b21lbiUyMGNhcmVlciUyMHN1cHBvcnQlMjBtb2Rlcm58ZW58MHx8fHwxNzg2NDAzMjQ2fDA&ixlib=rb-4.1.0&q=85",
+  },
+  {
+    name: "The Radiant Table",
+    tag: "Brunches, gatherings, and shared laughter",
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+  },
+  {
+    name: "The Exhale Retreat",
+    tag: "A sacred space to rest, worship, and renew",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+  },
+  {
+    name: "Becoming Her",
+    tag: "Mentorship and study group for teen girls",
+    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+  },
+  {
+    name: "Little Lights",
+    tag: "Joyful discipleship resources for kids",
+    image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+  },
+];
+
+const GatheringsSection = () => (
+  <section data-testid="gatherings-section" className="bg-espresso">
     <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
       <Reveal>
-        <p className="eyebrow">What we do</p>
-        <h2 className="mt-5 max-w-2xl font-serif text-4xl font-light leading-tight text-cream sm:text-5xl">
-          Four movements, one promise:{" "}
-          <em className="text-softgold">you are not alone.</em>
+        <span aria-hidden="true" className="block h-px w-10 bg-gold/70" />
+        <h2 className="mt-10 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
+          Our Gatherings
         </h2>
-      </Reveal>
-      <div className="mt-16 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
-        {PILLARS.map((p, i) => (
-          <Reveal key={p.name} delay={i * 0.1}>
-            <Link
-              to="/our-why"
-              data-testid={`pillar-${p.name.toLowerCase()}`}
-              className="group flex h-full flex-col bg-espresso p-8 transition-colors duration-500 hover:bg-plum"
-            >
-              <span className="font-serif text-5xl font-light text-softgold/50 transition-colors duration-500 group-hover:text-softgold">
-                {p.number}
-              </span>
-              <h3 className="mt-6 font-serif text-2xl font-medium text-cream">{p.name}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-parchment/70">{p.text}</p>
-              <ArrowUpRight className="mt-6 h-5 w-5 text-softgold/50 transition-all duration-300 group-hover:translate-x-1 group-hover:text-softgold" aria-hidden="true" />
-            </Link>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const CareMapPreview = () => (
-  <section data-testid="care-map-preview" className="relative overflow-hidden bg-plum">
-    <img
-      src={IMAGES.rockTexture}
-      alt=""
-      className="texture-image pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25"
-    />
-    <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32">
-      <Reveal className="flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <p className="eyebrow">The Care Map</p>
-          <h2 className="mt-5 max-w-xl font-serif text-4xl font-light leading-tight text-cream sm:text-5xl">
-            Every road to help, <em className="text-softgold">gently marked.</em>
-          </h2>
-        </div>
-        <Link
-          to="/care-map"
-          data-testid="care-map-preview-cta"
-          className="flex items-center gap-2 rounded-full border border-cream/30 px-7 py-3 text-xs font-bold uppercase tracking-[0.22em] text-cream transition-all duration-300 hover:border-softgold hover:text-softgold"
-        >
-          Open the Care Map
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
-      </Reveal>
-      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {CARE_CATEGORIES.slice(0, 3).map((c, i) => (
-          <Reveal key={c.id} delay={i * 0.12}>
-            <Link
-              to={`/care-map#${c.id}`}
-              data-testid={`care-preview-${c.id}`}
-              className="group relative block overflow-hidden border border-white/10"
-            >
-              <div className="relative h-56 overflow-hidden bg-ink">
-                <img
-                  src={c.image}
-                  alt=""
-                  className="texture-image h-full w-full object-cover opacity-70 transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="bg-ink/80 p-7">
-                <h3 className={`font-serif text-2xl font-medium ${c.accent === "text-emerald" ? "text-cream" : c.accent}`}>
-                  {c.name}
-                </h3>
-                <p className="mt-2 text-sm text-parchment/70">{c.tagline}</p>
-              </div>
-            </Link>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const GiveBand = () => (
-  <section data-testid="give-band" className="relative overflow-hidden bg-espresso">
-    <img
-      src={IMAGES.candles}
-      alt=""
-      className="texture-image pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30"
-    />
-    <div className="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/80 to-transparent" />
-    <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32">
-      <Reveal className="max-w-2xl">
-        <p className="eyebrow">Give</p>
-        <h2 className="mt-5 font-serif text-4xl font-light leading-tight text-cream sm:text-5xl">
-          Your generosity becomes <em className="text-softgold">someone's steady ground.</em>
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-parchment/80 md:text-lg">
-          Every gift funds care circles, practical resources, and safe spaces for
-          women and girls carrying more than they should.
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-parchment/85 md:text-lg">
+          Discover beautiful chapters of connection, designed to meet you
+          wherever you are in your journey.
         </p>
-        <Link
-          to="/give"
-          data-testid="give-band-cta"
-          className="mt-10 inline-flex items-center gap-2 rounded-full bg-gold px-8 py-3.5 text-xs font-bold uppercase tracking-[0.22em] text-ink transition-all duration-300 hover:bg-softgold hover:shadow-[0_0_28px_rgba(212,175,55,0.35)]"
-        >
-          Give Today
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
       </Reveal>
+      <div className="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        {GATHERINGS.map((g, i) => (
+          <Reveal key={g.name} delay={(i % 3) * 0.1}>
+            <Link to="/gatherings" data-testid={`gathering-card-${i}`} className="group block">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] border border-white/10">
+                <img
+                  src={g.image}
+                  alt={g.name}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-espresso/60 via-transparent to-transparent" />
+              </div>
+              <h3 className="mt-6 font-serif text-2xl font-semibold text-softgold transition-colors duration-300 group-hover:text-gold">
+                {g.name}
+              </h3>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-parchment/60">
+                {g.tag}
+              </p>
+            </Link>
+          </Reveal>
+        ))}
+      </div>
     </div>
   </section>
 );
@@ -209,9 +442,11 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <PillarsPreview />
-      <CareMapPreview />
-      <GiveBand />
+      <SupportSection />
+      <FoundationSection />
+      <AltarSection />
+      <TransformationSection />
+      <GatheringsSection />
     </main>
   );
 }
