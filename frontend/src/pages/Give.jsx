@@ -14,6 +14,13 @@ const TIERS = [
   { amount: 250, lookup: "give_250", impact: "Sponsors a month of mentoring for a girl in our teen circle." },
 ];
 
+const SUSTAINER_TIERS = [
+  { amount: 15, lookup: "sustain_15", impact: "Keeps the coffee warm and the candles lit at one circle, every month." },
+  { amount: 25, lookup: "sustain_25", impact: "Covers weekly gathering hospitality for one care circle, all year long." },
+  { amount: 50, lookup: "sustain_50", impact: "Stocks a welcome bag every single month for a sister starting over." },
+  { amount: 100, lookup: "sustain_100", impact: "Sustains ongoing mentoring and provision workshops month after month." },
+];
+
 export default function Give() {
   const [loading, setLoading] = useState(null);
 
@@ -87,6 +94,47 @@ export default function Give() {
               </Reveal>
             ))}
           </div>
+          <Reveal delay={0.15}>
+            <div data-testid="sustainer-circle" className="mt-20 rounded-2xl border border-gold/25 bg-plum/50 p-8 sm:p-12">
+              <p className="eyebrow">Monthly Giving</p>
+              <h2 className="mt-4 font-serif text-3xl font-semibold text-cream sm:text-4xl">
+                The Sustainer <em className="font-garamond font-light text-softgold">Circle</em>
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-parchment/75 md:text-base">
+                One-time gifts open doors; monthly gifts keep them open. Sustainers
+                give automatically each month — steady care for steady burdens.
+                Cancel anytime.
+              </p>
+              <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                {SUSTAINER_TIERS.map((t, i) => (
+                  <div
+                    key={t.lookup}
+                    data-testid={`sustainer-tier-${t.amount}`}
+                    className="group flex h-full flex-col rounded-xl border border-white/10 bg-ink/60 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-gold/60"
+                  >
+                    <span className="font-serif text-4xl font-light text-cream transition-colors duration-300 group-hover:text-gold">
+                      ${t.amount}
+                      <span className="font-garamond text-lg italic text-parchment/60"> /month</span>
+                    </span>
+                    <p className="mt-4 flex-1 text-sm leading-relaxed text-parchment/70">{t.impact}</p>
+                    <button
+                      onClick={() => give(t)}
+                      disabled={loading !== null}
+                      data-testid={`sustainer-button-${t.amount}`}
+                      className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-gold/60 px-6 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-gold transition-all duration-300 hover:bg-gold hover:text-ink disabled:opacity-60"
+                    >
+                      {loading === t.lookup ? (
+                        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                      ) : (
+                        <HeartHandshake className="h-4 w-4" aria-hidden="true" />
+                      )}
+                      Join Monthly
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-16 rounded-2xl border border-white/10 bg-plum/40 p-8 sm:p-12">
               <h2 className="font-serif text-2xl font-semibold text-cream sm:text-3xl">Other ways to give</h2>

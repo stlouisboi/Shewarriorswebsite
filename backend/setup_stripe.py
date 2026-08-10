@@ -18,6 +18,17 @@ CATALOG = [
             {"lookup_key": "give_250", "amount": 25000, "currency": "usd"},
         ],
     },
+    {
+        "emergent_product_id": "sheworriers_sustainer",
+        "name": "SheWorriers Sustainer Circle (Monthly)",
+        "tax_code": "txcd_10000000",
+        "prices": [
+            {"lookup_key": "sustain_15", "amount": 1500, "currency": "usd", "interval": "month"},
+            {"lookup_key": "sustain_25", "amount": 2500, "currency": "usd", "interval": "month"},
+            {"lookup_key": "sustain_50", "amount": 5000, "currency": "usd", "interval": "month"},
+            {"lookup_key": "sustain_100", "amount": 10000, "currency": "usd", "interval": "month"},
+        ],
+    },
 ]
 
 

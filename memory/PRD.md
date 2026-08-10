@@ -46,6 +46,6 @@ Build a landing page for SheWorriers Foundation with: dark earthy palette (espre
 - Real gatherings/stories content; "The First Crown" event details.
 
 ## Notes
-- Stripe: claimable sandbox provisioned (Flow A); donation tiers $25/$50/$100/$250 as one-time prices (give_25…give_250). Tax mode "full" (Stripe managed payments). Webhook /api/stripe/webhook. Success/cancel pages live.
+- Stripe: claimable sandbox provisioned (Flow A); donation tiers $25/$50/$100/$250 one-time (give_25…give_250) + Sustainer Circle monthly $15/$25/$50/$100 (sustain_15…sustain_100). Tax mode "full" (Stripe managed payments). Webhook /api/stripe/webhook. Success/cancel pages live.
 - Founder: Stephanie Lawrence, portrait at /app/frontend/public/assets/founder.jpg.
 - Motion: Lenis smooth scroll, masked line-by-line hero reveal, editorial marquee, chapter numbers, parallax hero decor.
