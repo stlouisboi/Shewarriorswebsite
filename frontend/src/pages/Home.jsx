@@ -24,6 +24,21 @@ const CircularBadge = () => (
   </div>
 );
 
+const MARQUEE_WORDS = ["Sisterhood", "Sanctuary", "Stillness", "Strength", "Softness", "Shalom"];
+
+const Marquee = () => (
+  <div data-testid="editorial-marquee" aria-hidden="true" className="overflow-hidden border-y border-white/10 bg-ink py-7">
+    <div className="marquee-track flex w-max items-center gap-14">
+      {[...MARQUEE_WORDS, ...MARQUEE_WORDS, ...MARQUEE_WORDS, ...MARQUEE_WORDS].map((w, i) => (
+        <span key={i} className="flex items-center gap-14">
+          <span className="font-garamond text-3xl font-light italic text-parchment/40 sm:text-4xl">{w}</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-gold/50" />
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
 const Hero = () => {
   const ref = useRef(null);
   const reduce = useReducedMotion();
@@ -41,20 +56,28 @@ const Hero = () => {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.1 }}>
           <GoldDash />
         </motion.div>
-        <motion.h1
-          initial={{ opacity: 0, y: 36 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        <h1
+          data-testid="hero-headline"
           className="mt-10 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl lg:text-6xl"
         >
-          For the woman who holds
-          <br />
-          <em className="normal-case text-terracotta">everyone else</em> together.
-          <br />
-          This is a place for you to
-          <br />
-          be <em className="normal-case text-softgold">held, too.</em>
-        </motion.h1>
+          {[
+            <>For the woman who holds</>,
+            <><em className="normal-case text-terracotta">everyone else</em> together.</>,
+            <>This is a place for you to</>,
+            <>be <em className="normal-case text-softgold">held, too.</em></>,
+          ].map((line, i) => (
+            <span key={i} className="block overflow-hidden pb-1">
+              <motion.span
+                className="block"
+                initial={reduce ? false : { y: "115%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.25 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,7 +153,8 @@ const SupportSection = () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center sm:py-32">
       <Reveal>
         <GoldDash />
-        <h2 className="mt-10 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
+        <p className="eyebrow mt-8">Chapter 01 · The First Step</p>
+        <h2 className="mt-6 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
           You don't have to figure it out
           <br />
           <em className="normal-case text-terracotta">alone.</em>
@@ -186,28 +210,28 @@ const FoundationSection = () => (
   <section data-testid="foundation-section" className="bg-espresso">
     <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:py-32">
       <Reveal>
-        <p className="eyebrow">Our Foundation</p>
-        <blockquote className="mt-10 font-garamond text-4xl font-light italic leading-snug text-cream sm:text-5xl">
+        <p className="eyebrow">Chapter 02 · Our Foundation</p>
+        <blockquote className="mt-10 font-garamond text-5xl font-light italic leading-snug text-cream sm:text-6xl lg:text-7xl">
           "Those who look to Him are radiant; their faces are never covered with shame."
         </blockquote>
-        <p className="mt-8 text-xs font-semibold uppercase tracking-[0.3em] text-parchment/60">Psalm 34:5</p>
+        <p className="mt-10 text-sm font-semibold uppercase tracking-[0.3em] text-parchment/60">Psalm 34:5</p>
       </Reveal>
       <Reveal delay={0.1}>
         <div className="mt-20 border-t border-white/10 pt-20">
-          <p className="eyebrow">Who We Are</p>
+          <p className="eyebrow">Chapter 03 · Who We Are</p>
           <h2 className="mt-8 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
             For every season.
             <br />
             <em className="normal-case text-terracotta">for every sister.</em>
           </h2>
-          <ul className="mt-12 flex flex-col gap-5">
+          <ul className="mt-14 flex flex-col gap-7">
             {SEASONS.map((s, i) => (
-              <li key={s} data-testid={`season-${i}`} className="font-garamond text-xl italic text-parchment/80 sm:text-2xl">
+              <li key={s} data-testid={`season-${i}`} className="font-garamond text-2xl italic text-parchment/85 sm:text-3xl lg:text-4xl">
                 {s}
               </li>
             ))}
           </ul>
-          <p className="mt-14 border-t border-white/10 pt-10 font-garamond text-2xl italic text-cream sm:text-3xl">
+          <p className="mt-16 border-t border-white/10 pt-12 font-garamond text-3xl italic text-cream sm:text-4xl lg:text-5xl">
             The table is set, sister. Come as you are.
           </p>
         </div>
@@ -237,7 +261,7 @@ const AltarSection = () => {
     <section data-testid="altar-section" className="bg-plum">
       <div className="mx-auto max-w-3xl px-6 py-24 text-center sm:py-32">
         <Reveal>
-          <p className="eyebrow">The Altar</p>
+          <p className="eyebrow">Chapter 04 · The Altar</p>
           <h2 className="mt-8 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
             Leave it <em className="normal-case text-terracotta">here.</em>
           </h2>
@@ -343,7 +367,7 @@ const TransformationSection = () => (
       </Reveal>
       <Reveal delay={0.12}>
         <div data-testid="transformation-card" className="rounded-2xl border border-white/10 bg-plum/60 p-8 sm:p-12">
-          <p className="eyebrow">The Transformation</p>
+          <p className="eyebrow">Chapter 05 · The Transformation</p>
           <div className="mt-8 flex flex-col gap-6">
             {TRANSFORMATIONS.map(([from, to], i) => (
               <div key={from} data-testid={`transformation-row-${i}`} className="flex items-baseline gap-4">
@@ -403,7 +427,8 @@ const GatheringsSection = () => (
     <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
       <Reveal>
         <span aria-hidden="true" className="block h-px w-10 bg-gold/70" />
-        <h2 className="mt-10 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
+        <p className="eyebrow mt-8">Chapter 06 · The Table</p>
+        <h2 className="mt-6 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
           Our Gatherings
         </h2>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-parchment/85 md:text-lg">
@@ -442,6 +467,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <Marquee />
       <SupportSection />
       <FoundationSection />
       <AltarSection />

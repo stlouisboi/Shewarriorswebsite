@@ -40,6 +40,12 @@ Build a landing page for SheWorriers Foundation with: dark earthy palette (espre
 - Note: Gatherings, Stories, and some Care Map partner entries are sample/demo content pending real foundation data.
 
 ## Next Tasks
-- Wire Stripe for donations.
-- Build legal pages.
+- Wire Stripe for donations. — DONE 2026-08-10 (sandbox claimable; live after claim + KYC)
+- Build legal pages. — DONE 2026-08-10
 - Prayer team inbox.
+- Real gatherings/stories content; "The First Crown" event details.
+
+## Notes
+- Stripe: claimable sandbox provisioned (Flow A); donation tiers $25/$50/$100/$250 as one-time prices (give_25…give_250). Tax mode "full" (Stripe managed payments). Webhook /api/stripe/webhook. Success/cancel pages live.
+- Founder: Stephanie Lawrence, portrait at /app/frontend/public/assets/founder.jpg.
+- Motion: Lenis smooth scroll, masked line-by-line hero reveal, editorial marquee, chapter numbers, parallax hero decor.

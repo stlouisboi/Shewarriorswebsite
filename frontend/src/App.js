@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
+import Lenis from "lenis";
 import { ImmediateHelp } from "@/components/ImmediateHelp";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -15,6 +16,8 @@ import Give from "@/pages/Give";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import AnnualReports from "@/pages/AnnualReports";
+import PaymentSuccess from "@/pages/PaymentSuccess";
+import PaymentCancel from "@/pages/PaymentCancel";
 
 const ScrollManager = () => {
   const { pathname, hash } = useLocation();
@@ -30,10 +33,28 @@ const ScrollManager = () => {
   return null;
 };
 
+const SmoothScroll = () => {
+  useEffect(() => {
+    const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    let frame;
+    const raf = (time) => {
+      lenis.raf(time);
+      frame = requestAnimationFrame(raf);
+    };
+    frame = requestAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(frame);
+      lenis.destroy();
+    };
+  }, []);
+  return null;
+};
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <SmoothScroll />
         <ScrollManager />
         <div className="sticky top-0 z-50">
           <ImmediateHelp />
@@ -50,6 +71,8 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/annual-reports" element={<AnnualReports />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/cancel" element={<PaymentCancel />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

@@ -91,3 +91,22 @@ body {
         @apply font-sans text-xs font-semibold uppercase tracking-[0.3em] text-softgold;
     }
 }
+
+@keyframes marquee-drift {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-track {
+    animation: marquee-drift 46s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
+    }
+}
