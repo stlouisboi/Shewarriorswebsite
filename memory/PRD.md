@@ -56,3 +56,4 @@ Build a landing page for SheWorriers Foundation with: dark earthy palette (espre
 - Get Involved v2 (2026-08-11): participation hub — hero per user copy, five numbered places (Join/Mentor/Serve/Partner/Fund), Join section with season+need chips, mentor interest pipeline form (screening consent, no matching promised), six serve areas, seven partner lanes, closing "Find Your Place". CTA system per user spec. POST /api/interest (mentor/volunteer/partner).
 - Give v2 (2026-08-11): "Every gift helps build the table" + what-gifts-build list; removed invented impact figures; monthly CTA "Become a Circle Keeper".
 - New page: /commitment-to-care (vetting, clinical disclaimer, privacy, re-verification) linked in footer legal.
+- The Sister Note (2026-08-11): weekly email signup in global footer → POST /api/sister-note (upsert by email), welcome email via Resend when key present. Footer logo enlarged (h-64/h-80).

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { PrayerEngine } from "./PrayerEngine";
+import { SisterNote } from "./SisterNote";
 
 const navCol1 = [
   { to: "/our-why", label: "Our Why" },
@@ -103,11 +104,12 @@ export const Footer = () => (
       </div>
 
       <div className="mt-20 flex flex-col items-center border-t border-white/10 pt-14">
-        <Link to="/" data-testid="footer-logo-link">
+        <SisterNote />
+        <Link to="/" data-testid="footer-logo-link" className="mt-16 block">
           <img
             src="/assets/logo-full.png"
             alt="SheWorriers — From Worry to Worship"
-            className="h-48 w-auto sm:h-56"
+            className="h-64 w-auto sm:h-80"
           />
         </Link>
         <div aria-hidden="true" className="mt-8 flex items-center gap-3">

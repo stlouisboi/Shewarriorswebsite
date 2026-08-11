@@ -109,6 +109,11 @@ class InterestRequest(BaseModel):
     details: dict = Field(default_factory=dict)
 
 
+class SisterNoteRequest(BaseModel):
+    email: EmailStr
+    name: Optional[str] = Field(default=None, max_length=120)
+
+
 @api_router.get("/")
 async def root():
     return {"message": "SheWorriers Foundation API"}
@@ -183,6 +188,31 @@ async def create_interest(input: InterestRequest):
       current opportunities, orientation, and the next best fit for your gifts.
     </p>"""
     await send_email(input.email, "We received your interest — SheWorriers", body)
+    return {"ok": True}
+
+
+@api_router.post("/sister-note")
+async def join_sister_note(input: SisterNoteRequest):
+    await db.sister_note_subs.update_one(
+        {"email": input.email},
+        {"$set": {
+            "email": input.email,
+            "name": input.name,
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+        }, "$setOnInsert": {
+            "id": str(uuid.uuid4()),
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }},
+        upsert=True,
+    )
+    body = f"""
+    <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">You're on the list{f', {input.name.split()[0]}' if input.name else ''}.</h1>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
+      The Sister Note arrives weekly — a gentle letter of faith, care, and community
+      updates from the SheWorriers sisterhood. Nothing heavy. Just a soft place to land
+      in your inbox between gatherings.
+    </p>"""
+    await send_email(input.email, "Welcome to The Sister Note", body)
     return {"ok": True}
 
 
