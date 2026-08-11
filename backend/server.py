@@ -5,11 +5,13 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 from typing import Optional
 import uuid
 from datetime import datetime, timezone
 import stripe
+import asyncio
+import resend
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -25,6 +27,53 @@ stripe.api_key = os.environ.get("STRIPE_SECRET_KEY") or "sk_test_emergent"
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 TAX_MODE = "full"
 
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "SheWorriers Foundation <onboarding@resend.dev>")
+resend.api_key = RESEND_API_KEY
+
+EMAIL_WRAPPER = """<div style="background:#2C1E16;padding:40px 20px;font-family:Georgia,serif;">
+  <div style="max-width:520px;margin:0 auto;background:#3B222E;border:1px solid #C5A05944;padding:40px;">
+    <p style="color:#C5A059;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:0 0 16px;">SheWorriers Foundation</p>
+    {body}
+    <p style="color:#E8E1D580;font-size:12px;margin:32px 0 0;">With love and prayer,<br/>The SheWorriers Sisterhood · Winston-Salem, NC</p>
+  </div>
+</div>"""
+
+
+async def send_email(to: str, subject: str, body_html: str):
+    if not RESEND_API_KEY:
+        logging.getLogger(__name__).warning("RESEND_API_KEY not set; skipping email to %s", to)
+        return
+    try:
+        await asyncio.to_thread(
+            resend.Emails.send,
+            {"from": SENDER_EMAIL, "to": [to], "subject": subject, "html": EMAIL_WRAPPER.format(body=body_html)},
+        )
+    except Exception as e:
+        logging.getLogger(__name__).error(f"email failed: {e}")
+
+
+async def send_donation_receipt(session_id: str):
+    try:
+        s = stripe.checkout.Session.retrieve(session_id)
+        email = (s.customer_details or {}).get("email")
+        if not email:
+            return
+        amount = (s.amount_total or 0) / 100
+        recurring = s.mode == "subscription"
+        body = f"""
+    <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">Your gift was received.</h1>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0 0 12px;">
+      Thank you, sister. Your {'monthly ' if recurring else ''}gift of <strong style="color:#D4AF37;">${amount:,.2f}</strong>
+      just became someone's steady ground — a care circle, a welcome bag, a mentor's hour.
+    </p>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
+      "Those who look to Him are radiant; their faces are never covered with shame." — Psalm 34:5
+    </p>"""
+        await send_email(email, "Your gift to SheWorriers was received", body)
+    except Exception as e:
+        logging.getLogger(__name__).error(f"receipt failed: {e}")
+
 
 class PrayerRequest(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
@@ -35,6 +84,21 @@ class CheckoutRequest(BaseModel):
     lookup_key: str
     quantity: int = Field(1, ge=1, le=100)
     origin_url: str
+
+
+class RsvpRequest(BaseModel):
+    gathering: str = Field(min_length=1, max_length=120)
+    name: str = Field(min_length=1, max_length=120)
+    email: EmailStr
+
+
+class NavigatorRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    contact: str = Field(min_length=1, max_length=200)
+    support_seeking: str = Field(min_length=1, max_length=200)
+    hardest_right_now: Optional[str] = Field(default=None, max_length=1000)
+    contact_method: str = Field(min_length=1, max_length=40)
+    preferred_time: str = Field(min_length=1, max_length=80)
 
 
 @api_router.get("/")
@@ -51,6 +115,45 @@ async def create_prayer(input: PrayerRequest):
         "created_at": datetime.now(timezone.utc).isoformat(),
     }
     await db.prayer_requests.insert_one(doc)
+    return {"ok": True}
+
+
+@api_router.post("/rsvps")
+async def create_rsvp(input: RsvpRequest):
+    doc = {
+        "id": str(uuid.uuid4()),
+        "gathering": input.gathering,
+        "name": input.name,
+        "email": input.email,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.rsvps.insert_one(doc)
+    body = f"""
+    <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">Your seat is saved, {input.name.split()[0]}.</h1>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
+      We're holding a chair for you at <strong style="color:#D4AF37;">{input.gathering}</strong>.
+      Come as you are — someone will be waiting to welcome you by name.
+    </p>"""
+    await send_email(input.email, f"Your seat at {input.gathering} is saved", body)
+    return {"ok": True}
+
+
+@api_router.post("/navigator-requests")
+async def create_navigator_request(input: NavigatorRequest):
+    doc = {
+        "id": str(uuid.uuid4()),
+        **input.model_dump(),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.navigator_requests.insert_one(doc)
+    if "@" in input.contact:
+        body = f"""
+    <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">We received your request, {input.name.split()[0]}.</h1>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
+      A SheWorriers Care Navigator will reach out by {input.contact_method.lower()} — {input.preferred_time.lower()}.
+      You don't have to figure this out alone. One supported step is still a step forward.
+    </p>"""
+        await send_email(input.contact, "We're here — your Care Navigator request", body)
     return {"ok": True}
 
 
@@ -102,7 +205,7 @@ async def get_payment_status(session_id: str):
         try:
             s = stripe.checkout.Session.retrieve(session_id)
             if s.payment_status == "paid" or s.status == "complete":
-                await db.payment_transactions.update_one(
+                result = await db.payment_transactions.update_one(
                     {"session_id": session_id, "payment_status": {"$ne": "paid"}},
                     {"$set": {
                         "status": "completed",
@@ -111,6 +214,8 @@ async def get_payment_status(session_id: str):
                         "updated_at": datetime.now(timezone.utc).isoformat(),
                     }},
                 )
+                if result.modified_count:
+                    await send_donation_receipt(session_id)
                 record = await db.payment_transactions.find_one({"session_id": session_id})
         except stripe.error.StripeError:
             pass
@@ -132,11 +237,13 @@ async def stripe_webhook(request: Request):
     obj, t = event["data"]["object"], event["type"]
     now = datetime.now(timezone.utc).isoformat()
     if t == "checkout.session.completed":
-        await db.payment_transactions.update_one(
+        result = await db.payment_transactions.update_one(
             {"session_id": obj["id"], "payment_status": {"$ne": "paid"}},
             {"$set": {"status": "completed", "payment_status": obj.get("payment_status", "paid"),
                       "stripe_payment_intent_id": obj.get("payment_intent"), "updated_at": now}},
         )
+        if result.modified_count:
+            await send_donation_receipt(obj["id"])
     elif t == "checkout.session.async_payment_succeeded":
         await db.payment_transactions.update_one(
             {"session_id": obj["id"]}, {"$set": {"payment_status": "paid", "updated_at": now}})

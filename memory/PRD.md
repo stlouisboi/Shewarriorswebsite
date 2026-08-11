@@ -50,3 +50,6 @@ Build a landing page for SheWorriers Foundation with: dark earthy palette (espre
 - Founder: Stephanie Lawrence, portrait at /app/frontend/public/assets/founder.jpg.
 - Motion: Lenis smooth scroll, masked line-by-line hero reveal, editorial marquee, chapter numbers, parallax hero decor.
 - Photography: all people photos now feature Black women/girls (verified per-image). Slogan "From Worry to Worship" restored in nav + footer logo. Founder section (Stephanie Lawrence) on both Home and Our Why.
+- Care Map v2 (2026-08-11): need-based pathways (Purpose & Provision, Mind & Wellness, Faith & Flourishing, Roots & Wings, Safety & Stability), safety bar, working search/filters (location/cost/format/season), standardized resource cards with clinical-vs-community labels + Save for Later (localStorage), Start Here / Talk to a Sister / Join a Circle featured flow, Talk to a Sister navigator form (POST /api/navigator-requests), bottom conversion trio + closing message.
+- RSVPs (2026-08-11): per-gathering Reserve-a-Seat forms → POST /api/rsvps.
+- Email (2026-08-11): Resend wired for donor receipts + RSVP confirmations + navigator confirmations; RESEND_API_KEY empty in backend/.env — emails log-and-skip until the user adds a free Resend key.
