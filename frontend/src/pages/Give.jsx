@@ -8,17 +8,28 @@ import { IMAGES } from "../data/resources";
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const TIERS = [
-  { amount: 25, lookup: "give_25", impact: "Covers a week of warm meals and coffee for one care circle." },
-  { amount: 50, lookup: "give_50", impact: "Stocks a welcome bag for a woman arriving at a safe house." },
-  { amount: 100, lookup: "give_100", impact: "Funds a seat in a provision workshop — resume, budget, benefits." },
-  { amount: 250, lookup: "give_250", impact: "Sponsors a month of mentoring for a girl in our teen circle." },
+  { amount: 25, lookup: "give_25", impact: "A one-time gift toward gatherings, mentorship, and the Care Map." },
+  { amount: 50, lookup: "give_50", impact: "A one-time gift toward gatherings, mentorship, and the Care Map." },
+  { amount: 100, lookup: "give_100", impact: "A one-time gift toward gatherings, mentorship, and the Care Map." },
+  { amount: 250, lookup: "give_250", impact: "A one-time gift toward gatherings, mentorship, and the Care Map." },
 ];
 
 const SUSTAINER_TIERS = [
-  { amount: 15, lookup: "sustain_15", impact: "Keeps the coffee warm and the candles lit at one circle, every month." },
-  { amount: 25, lookup: "sustain_25", impact: "Covers weekly gathering hospitality for one care circle, all year long." },
-  { amount: 50, lookup: "sustain_50", impact: "Stocks a welcome bag every single month for a sister starting over." },
-  { amount: 100, lookup: "sustain_100", impact: "Sustains ongoing mentoring and provision workshops month after month." },
+  { amount: 15, lookup: "sustain_15", impact: "A steady monthly gift that keeps circles meeting." },
+  { amount: 25, lookup: "sustain_25", impact: "A steady monthly gift that keeps circles meeting." },
+  { amount: 50, lookup: "sustain_50", impact: "A steady monthly gift that keeps circles meeting." },
+  { amount: 100, lookup: "sustain_100", impact: "A steady monthly gift that keeps circles meeting." },
+];
+
+const GIFT_BUILDS = [
+  "Sister Circles and community gatherings",
+  "Programs for girls and young women",
+  "Mentorship infrastructure",
+  "Career and professional-development opportunities",
+  "Community resource connections",
+  "Retreats and faith-centered experiences",
+  "The SheWorriers Care Map",
+  "Scholarships and participation assistance",
 ];
 
 export default function Give() {
@@ -51,15 +62,22 @@ export default function Give() {
           <Reveal>
             <p className="eyebrow">Give</p>
             <h1 className="mt-6 max-w-3xl font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl lg:text-6xl">
-              Generosity that becomes{" "}
-              <em className="normal-case text-terracotta">steady ground.</em>
+              Every gift helps{" "}
+              <em className="normal-case text-terracotta">build the table.</em>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg">
               SheWorriers Foundation is a faith-centered nonprofit based in
-              Winston-Salem, NC (501(c)(3) status pending approval). Every gift
-              goes directly to care circles, practical resources, and safe
-              spaces for women and girls across the Piedmont Triad.
+              Winston-Salem, NC (501(c)(3) status pending approval). Your support
+              helps us develop:
             </p>
+            <ul className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-2">
+              {GIFT_BUILDS.map((g) => (
+                <li key={g} className="flex items-start gap-3 text-sm text-parchment/80">
+                  <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                  {g}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
@@ -128,7 +146,7 @@ export default function Give() {
                       ) : (
                         <HeartHandshake className="h-4 w-4" aria-hidden="true" />
                       )}
-                      Join Monthly
+                      Join Monthly — Circle Keeper
                     </button>
                   </div>
                 ))}

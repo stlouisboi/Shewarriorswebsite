@@ -18,6 +18,7 @@ const legal = [
   { label: "Privacy Policy", to: "/privacy" },
   { label: "Terms & Conditions", to: "/terms" },
   { label: "Annual Reports", to: "/annual-reports" },
+  { label: "Commitment to Care", to: "/commitment-to-care" },
   { label: "Contact", href: "mailto:hello@sheworriers.org" },
 ];
 

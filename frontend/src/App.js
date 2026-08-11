@@ -16,6 +16,7 @@ import Give from "@/pages/Give";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import AnnualReports from "@/pages/AnnualReports";
+import CommitmentToCare from "@/pages/CommitmentToCare";
 import PaymentSuccess from "@/pages/PaymentSuccess";
 import PaymentCancel from "@/pages/PaymentCancel";
 
@@ -71,6 +72,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/annual-reports" element={<AnnualReports />} />
+          <Route path="/commitment-to-care" element={<CommitmentToCare />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/cancel" element={<PaymentCancel />} />
           <Route path="*" element={<Home />} />

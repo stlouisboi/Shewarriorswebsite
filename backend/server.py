@@ -101,6 +101,14 @@ class NavigatorRequest(BaseModel):
     preferred_time: str = Field(min_length=1, max_length=80)
 
 
+class InterestRequest(BaseModel):
+    kind: str = Field(min_length=1, max_length=20)  # mentor | volunteer | partner
+    name: str = Field(min_length=1, max_length=120)
+    email: EmailStr
+    phone: Optional[str] = Field(default=None, max_length=40)
+    details: dict = Field(default_factory=dict)
+
+
 @api_router.get("/")
 async def root():
     return {"message": "SheWorriers Foundation API"}
@@ -154,6 +162,27 @@ async def create_navigator_request(input: NavigatorRequest):
       You don't have to figure this out alone. One supported step is still a step forward.
     </p>"""
         await send_email(input.contact, "We're here — your Care Navigator request", body)
+    return {"ok": True}
+
+
+@api_router.post("/interest")
+async def create_interest(input: InterestRequest):
+    if input.kind not in {"mentor", "volunteer", "partner"}:
+        raise HTTPException(400, "Invalid interest kind")
+    doc = {
+        "id": str(uuid.uuid4()),
+        **input.model_dump(),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    await db.interest_submissions.insert_one(doc)
+    labels = {"mentor": "the Mentor Interest List", "volunteer": "the volunteer team", "partner": "our partner network"}
+    body = f"""
+    <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">Welcome to the table, {input.name.split()[0]}.</h1>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
+      We've received your interest in {labels[input.kind]}. We'll reach out soon about
+      current opportunities, orientation, and the next best fit for your gifts.
+    </p>"""
+    await send_email(input.email, "We received your interest — SheWorriers", body)
     return {"ok": True}
 
 
