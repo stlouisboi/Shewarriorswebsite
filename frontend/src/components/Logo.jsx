@@ -1,19 +1,27 @@
 import { Link } from "react-router-dom";
 
-export const LogoMark = ({ className = "h-10 w-10" }) => (
-  <img
-    src="/assets/logo-emblem.png"
-    alt=""
-    aria-hidden="true"
-    className={`${className} object-contain`}
-  />
+export const LogoMark = ({ className = "h-14 w-14" }) => (
+  <span className="relative flex items-center justify-center">
+    <span aria-hidden="true" className="absolute inset-0 rounded-full bg-gold/10 blur-md" />
+    <img
+      src="/assets/logo-emblem.png"
+      alt=""
+      aria-hidden="true"
+      className={`${className} relative object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.45)]`}
+    />
+  </span>
 );
 
 export const Logo = ({ compact = false }) => (
   <Link to="/" data-testid="logo-link" className="flex items-center gap-3 group">
-    <LogoMark className={compact ? "h-11 w-11" : "h-14 w-14"} />
-    <span className="font-serif text-2xl sm:text-3xl font-semibold text-cream tracking-wide group-hover:text-softgold transition-colors duration-300">
-      SheWorriers
+    <LogoMark className={compact ? "h-12 w-12" : "h-16 w-16"} />
+    <span className="flex flex-col leading-none">
+      <span className="font-serif text-2xl sm:text-3xl font-semibold text-cream tracking-wide group-hover:text-softgold transition-colors duration-300">
+        SheWorriers
+      </span>
+      <span className="mt-1 font-sans text-[10px] uppercase tracking-[0.35em] text-softgold/80">
+        From Worry to Worship
+      </span>
     </span>
   </Link>
 );

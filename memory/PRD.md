@@ -49,3 +49,4 @@ Build a landing page for SheWorriers Foundation with: dark earthy palette (espre
 - Stripe: claimable sandbox provisioned (Flow A); donation tiers $25/$50/$100/$250 one-time (give_25…give_250) + Sustainer Circle monthly $15/$25/$50/$100 (sustain_15…sustain_100). Tax mode "full" (Stripe managed payments). Webhook /api/stripe/webhook. Success/cancel pages live.
 - Founder: Stephanie Lawrence, portrait at /app/frontend/public/assets/founder.jpg.
 - Motion: Lenis smooth scroll, masked line-by-line hero reveal, editorial marquee, chapter numbers, parallax hero decor.
+- Photography: all people photos now feature Black women/girls (verified per-image). Slogan "From Worry to Worship" restored in nav + footer logo. Founder section (Stephanie Lawrence) on both Home and Our Why.

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Briefcase, Heart, BookOpen, ArrowRight, Flame } from "lucide-react";
 import { Reveal } from "../components/Reveal";
+import { FounderNote } from "../components/FounderNote";
 
 const GoldDash = () => (
   <span aria-hidden="true" className="mx-auto block h-px w-10 bg-gold/70" />
@@ -393,32 +394,32 @@ const GATHERINGS = [
   {
     name: "Sacred Sister Circles",
     tag: "Intimate study, prayer, and deep soul-care",
-    image: "https://images.unsplash.com/photo-1760367119608-2b0b33786c94?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHw0fHx3b21lbiUyMGNvbW11bml0eSUyMGdhdGhlcmluZyUyMHdhcm0lMjBsaWdodGluZ3xlbnwwfHx8fDE3ODY0MDMyNDZ8MA&ixlib=rb-4.1.0&q=85",
+    image: "https://plus.unsplash.com/premium_photo-1700070732070-6e3bd74f9a20?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
   },
   {
     name: "Roots & Wings Mentorship",
     tag: "Intergenerational guidance and connection",
-    image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHx3b21lbiUyMGNhcmVlciUyMHN1cHBvcnQlMjBtb2Rlcm58ZW58MHx8fHwxNzg2NDAzMjQ2fDA&ixlib=rb-4.1.0&q=85",
+    image: "https://images.unsplash.com/photo-1521510186458-bbbda7aef46b?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
   },
   {
     name: "The Radiant Table",
     tag: "Brunches, gatherings, and shared laughter",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "https://plus.unsplash.com/premium_photo-1771416587253-88eb194c0d17?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
   },
   {
     name: "The Exhale Retreat",
     tag: "A sacred space to rest, worship, and renew",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
   },
   {
     name: "Becoming Her",
     tag: "Mentorship and study group for teen girls",
-    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "https://plus.unsplash.com/premium_photo-1663051145175-3c730be6adc3?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
   },
   {
     name: "Little Lights",
     tag: "Joyful discipleship resources for kids",
-    image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
   },
 ];
 
@@ -472,6 +473,7 @@ export default function Home() {
       <FoundationSection />
       <AltarSection />
       <TransformationSection />
+      <FounderNote compact />
       <GatheringsSection />
     </main>
   );

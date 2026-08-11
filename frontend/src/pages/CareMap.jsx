@@ -100,7 +100,8 @@ export default function CareMap() {
                 <div className="grid gap-10 lg:grid-cols-5">
                   <div className={`lg:col-span-2 ${ci % 2 === 1 ? "lg:order-2" : ""}`}>
                     <div className="relative h-64 overflow-hidden rounded-2xl border border-white/10 bg-ink lg:h-full lg:min-h-[320px]">
-                      <img src={cat.image} alt="" className="texture-image h-full w-full object-cover opacity-70" />
+                      <img src={cat.image} alt="" className="h-full w-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-espresso/50 via-transparent to-transparent" />
                     </div>
                   </div>
                   <div className="lg:col-span-3">

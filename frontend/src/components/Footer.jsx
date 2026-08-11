@@ -105,7 +105,7 @@ export const Footer = () => (
         <Link to="/" data-testid="footer-logo-link">
           <img
             src="/assets/logo-full.png"
-            alt="SheWorriers"
+            alt="SheWorriers — From Worry to Worship"
             className="h-48 w-auto sm:h-56"
           />
         </Link>

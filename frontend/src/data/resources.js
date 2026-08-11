@@ -8,7 +8,13 @@ export const IMAGES = {
   candles:
     "https://images.unsplash.com/photo-1760367119608-2b0b33786c94?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHw0fHx3b21lbiUyMGNvbW11bml0eSUyMGdhdGhlcmluZyUyMHdhcm0lMjBsaWdodGluZ3xlbnwwfHx8fDE3ODY0MDMyNDZ8MA&ixlib=rb-4.1.0&q=85",
   career:
-    "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHx3b21lbiUyMGNhcmVlciUyMHN1cHBvcnQlMjBtb2Rlcm58ZW58MHx8fHwxNzg2NDAzMjQ2fDA&ixlib=rb-4.1.0&q=85",
+    "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?crop=entropy&cs=srgb&fm=jpg&q=85&w=900",
+  wellness:
+    "https://images.unsplash.com/photo-1589156280159-27698a70f29e?crop=entropy&cs=srgb&fm=jpg&q=85&w=900",
+  faith:
+    "https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=entropy&cs=srgb&fm=jpg&q=85&w=900",
+  teens:
+    "https://plus.unsplash.com/premium_photo-1658526904282-5feb6958fcdc?crop=entropy&cs=srgb&fm=jpg&q=85&w=900",
   housing:
     "https://images.unsplash.com/photo-1472224371017-08207f84aaae?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwzfHxzYWZlJTIwcGVhY2VmdWwlMjB3YXJtJTIwaG91c2luZ3xlbnwwfHx8fDE3ODY0MDMyNDZ8MA&ixlib=rb-4.1.0&q=85",
 };
@@ -47,7 +53,7 @@ export const CARE_CATEGORIES = [
     id: "mind-wellness",
     name: "Mind & Wellness",
     tagline: "Education, self-care guides, and trusted referrals",
-    image: IMAGES.rockTexture,
+    image: IMAGES.wellness,
     accent: "text-terracotta",
     resources: [
       {
@@ -76,7 +82,7 @@ export const CARE_CATEGORIES = [
     id: "faith-flourishing",
     name: "Faith & Flourishing",
     tagline: "Sister Circles, Bible study, prayer, and worship",
-    image: IMAGES.candles,
+    image: IMAGES.faith,
     accent: "text-gold",
     resources: [
       {
@@ -105,7 +111,7 @@ export const CARE_CATEGORIES = [
     id: "girls-teens",
     name: "Girls & Teens",
     tagline: "Parent tools, study guides, and mentoring — with guardians involved",
-    image: IMAGES.gathering,
+    image: IMAGES.teens,
     accent: "text-berry",
     resources: [
       {
