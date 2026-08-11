@@ -29,7 +29,7 @@ STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 TAX_MODE = "full"
 
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
-SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "SheWorriers Foundation <onboarding@resend.dev>")
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "SHE Warriors Foundation <onboarding@resend.dev>")
 resend.api_key = RESEND_API_KEY
 
 PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID", "")
@@ -49,9 +49,9 @@ def _paypal_token() -> str:
 
 EMAIL_WRAPPER = """<div style="background:#2C1E16;padding:40px 20px;font-family:Georgia,serif;">
   <div style="max-width:520px;margin:0 auto;background:#3B222E;border:1px solid #C5A05944;padding:40px;">
-    <p style="color:#C5A059;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:0 0 16px;">SheWorriers Foundation</p>
+    <p style="color:#C5A059;font-size:11px;letter-spacing:3px;text-transform:uppercase;margin:0 0 16px;">SHE Warriors Foundation</p>
     {body}
-    <p style="color:#E8E1D580;font-size:12px;margin:32px 0 0;">With love and prayer,<br/>The SheWorriers Sisterhood · Winston-Salem, NC</p>
+    <p style="color:#E8E1D580;font-size:12px;margin:32px 0 0;">With love and prayer,<br/>The SHE Warriors Sisterhood · Winston-Salem, NC</p>
   </div>
 </div>"""
 
@@ -86,7 +86,7 @@ async def send_donation_receipt(session_id: str):
     <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
       "Those who look to Him are radiant; their faces are never covered with shame." — Psalm 34:5
     </p>"""
-        await send_email(email, "Your gift to SheWorriers was received", body)
+        await send_email(email, "Your gift to SHE Warriors was received", body)
     except Exception as e:
         logging.getLogger(__name__).error(f"receipt failed: {e}")
 
@@ -132,7 +132,7 @@ class SisterNoteRequest(BaseModel):
 
 @api_router.get("/")
 async def root():
-    return {"message": "SheWorriers Foundation API"}
+    return {"message": "SHE Warriors Foundation API"}
 
 
 @api_router.post("/prayers")
@@ -179,7 +179,7 @@ async def create_navigator_request(input: NavigatorRequest):
         body = f"""
     <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">We received your request, {input.name.split()[0]}.</h1>
     <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
-      A SheWorriers Care Navigator will reach out by {input.contact_method.lower()} — {input.preferred_time.lower()}.
+      A SHE Warriors Care Navigator will reach out by {input.contact_method.lower()} — {input.preferred_time.lower()}.
       You don't have to figure this out alone. One supported step is still a step forward.
     </p>"""
         await send_email(input.contact, "We're here — your Care Navigator request", body)
@@ -203,7 +203,7 @@ async def create_interest(input: InterestRequest):
       We've received your interest in {labels[input.kind]}. We'll reach out soon about
       current opportunities, orientation, and the next best fit for your gifts.
     </p>"""
-    await send_email(input.email, "We received your interest — SheWorriers", body)
+    await send_email(input.email, "We received your interest — SHE Warriors", body)
     return {"ok": True}
 
 
@@ -225,7 +225,7 @@ async def join_sister_note(input: SisterNoteRequest):
     <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">You're on the list{f', {input.name.split()[0]}' if input.name else ''}.</h1>
     <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
       The Sister Note arrives weekly — a gentle letter of faith, care, and community
-      updates from the SheWorriers sisterhood. Nothing heavy. Just a soft place to land
+      updates from the SHE Warriors sisterhood. Nothing heavy. Just a soft place to land
       in your inbox between gatherings.
     </p>"""
     await send_email(input.email, "Welcome to The Sister Note", body)
@@ -258,7 +258,7 @@ async def paypal_create_order(input: PayPalOrderRequest):
                 "intent": "CAPTURE",
                 "purchase_units": [{
                     "reference_id": input.lookup_key,
-                    "description": "SheWorriers Foundation Donation",
+                    "description": "SHE Warriors Foundation Donation",
                     "amount": {"currency_code": "USD", "value": f"{amount:.2f}"},
                 }],
             },
@@ -320,7 +320,7 @@ async def paypal_capture_order(order_id: str):
     <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
       "Those who look to Him are radiant; their faces are never covered with shame." — Psalm 34:5
     </p>"""
-            await send_email(payer_email, "Your gift to SheWorriers was received", body)
+            await send_email(payer_email, "Your gift to SHE Warriors was received", body)
     return {"status": result.get("status"), "payment_status": "paid" if paid else "failed"}
 @api_router.post("/payments/checkout")
 async def create_checkout(req: CheckoutRequest):

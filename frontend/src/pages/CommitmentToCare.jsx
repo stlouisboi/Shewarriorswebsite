@@ -3,13 +3,13 @@ import { Reveal } from "../components/Reveal";
 const SECTIONS = [
   {
     title: "How resources are chosen",
-    body: `Every organization on the Care Map is reviewed by a SheWorriers team member before it appears. We look for a real track record, clear contact pathways, and alignment with the dignity of the women we serve. Each listing shows the month it was last reviewed, and every listing is re-verified on a regular schedule.
+    body: `Every organization on the Care Map is reviewed by a SHE Warriors team member before it appears. We look for a real track record, clear contact pathways, and alignment with the dignity of the women we serve. Each listing shows the month it was last reviewed, and every listing is re-verified on a regular schedule.
 
 If a resource ever fails you, we want to know — email hello@sheworriers.org and we will review it within five business days.`,
   },
   {
-    title: "What SheWorriers is — and is not",
-    body: `SheWorriers provides education, community, and referrals. We are not a crisis service, therapy practice, medical provider, or law firm, and nothing on this site is medical, legal, or professional advice.
+    title: "What SHE Warriors is — and is not",
+    body: `SHE Warriors provides education, community, and referrals. We are not a crisis service, therapy practice, medical provider, or law firm, and nothing on this site is medical, legal, or professional advice.
 
 Care Map listings are labeled so the difference is always clear: "Clinical care / therapy referral" marks resources that connect you with licensed professionals; "Community support / not clinical care" marks peer, faith, and mentoring offerings. Both are valuable — they are simply different kinds of support.
 

@@ -105,12 +105,15 @@ export const Footer = () => (
 
       <div className="mt-20 flex flex-col items-center border-t border-white/10 pt-14">
         <SisterNote />
-        <Link to="/" data-testid="footer-logo-link" className="mt-16 block">
+        <Link to="/" data-testid="footer-logo-link" className="mt-16 flex flex-col items-center gap-6">
           <img
-            src="/assets/logo-full.png"
-            alt="SheWorriers — From Worry to Worship"
-            className="h-64 w-auto sm:h-80"
+            src="/assets/logo-emblem.png"
+            alt="SHE Warriors emblem"
+            className="h-56 w-auto sm:h-64"
           />
+          <span className="font-serif text-3xl font-semibold tracking-[0.15em] text-cream sm:text-4xl">
+            <span className="text-softgold">SHE</span> WARRIORS
+          </span>
         </Link>
         <div aria-hidden="true" className="mt-8 flex items-center gap-3">
           <span className="h-2 w-2 rounded-full bg-gold" />
@@ -141,12 +144,12 @@ export const Footer = () => (
           )}
         </nav>
         <p data-testid="footer-nonprofit-status" className="mt-10 max-w-xl text-center text-xs leading-relaxed text-parchment/45">
-          SheWorriers Foundation is a faith-centered nonprofit based in Winston-Salem, North Carolina,
+          SHE Warriors Foundation is a faith-centered nonprofit based in Winston-Salem, North Carolina,
           serving women and girls across the Piedmont Triad (501(c)(3) status pending approval). EIN and
           determination letter will be published here once approved.
         </p>
         <p className="mt-3 text-xs text-parchment/40">
-          © {new Date().getFullYear()} SheWorriers Foundation. All rights reserved.
+          © {new Date().getFullYear()} SHE Warriors Foundation. All rights reserved.
         </p>
       </div>
     </div>

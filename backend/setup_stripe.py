@@ -9,7 +9,7 @@ stripe.api_key = os.environ["STRIPE_SECRET_KEY"]
 CATALOG = [
     {
         "emergent_product_id": "sheworriers_donation",
-        "name": "SheWorriers Foundation Donation",
+        "name": "SHE Warriors Foundation Donation",
         "tax_code": "txcd_10000000",
         "prices": [
             {"lookup_key": "give_25", "amount": 2500, "currency": "usd"},
@@ -20,7 +20,7 @@ CATALOG = [
     },
     {
         "emergent_product_id": "sheworriers_sustainer",
-        "name": "SheWorriers Sustainer Circle (Monthly)",
+        "name": "SHE Warriors Sustainer Circle (Monthly)",
         "tax_code": "txcd_10000000",
         "prices": [
             {"lookup_key": "sustain_15", "amount": 1500, "currency": "usd", "interval": "month"},

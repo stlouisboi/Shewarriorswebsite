@@ -12,7 +12,7 @@ export const FounderNote = ({ compact = false }) => (
           <em className="text-terracotta">the founder</em>
         </h2>
         <p className="mt-8 font-garamond text-2xl font-light italic leading-snug text-cream sm:text-3xl">
-          "SheWorriers began with a simple belief: women were never meant to
+          "SHE Warriors began with a simple belief: women were never meant to
           carry their worries alone."
         </p>
         {!compact && (
@@ -33,7 +33,7 @@ export const FounderNote = ({ compact = false }) => (
         )}
         <p className="mt-10 flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.3em] text-parchment/60">
           <span aria-hidden="true" className="h-px w-10 bg-parchment/40" />
-          Stephanie Lawrence · Founder, SheWorriers
+          Stephanie Lawrence · Founder, SHE Warriors
         </p>
       </Reveal>
       <Reveal delay={0.15} className="flex justify-center lg:justify-end">
@@ -42,7 +42,7 @@ export const FounderNote = ({ compact = false }) => (
           <div aria-hidden="true" className="absolute -inset-10 rounded-full border border-gold/10" />
           <img
             src="/assets/founder.jpg"
-            alt="Stephanie Lawrence, founder of SheWorriers Foundation"
+            alt="Stephanie Lawrence, founder of SHE Warriors Foundation"
             className="h-72 w-72 rounded-full border-2 border-gold/50 object-cover object-top shadow-[0_0_80px_rgba(212,175,55,0.15)] sm:h-96 sm:w-96"
           />
         </div>

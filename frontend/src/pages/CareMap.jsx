@@ -106,7 +106,7 @@ const ResourceCard = ({ r, pathwayId, index, saved, onSave }) => {
           : "border-emerald/40 bg-emerald/10 text-parchment/80"
       }`}>
         {r.kind === "clinical" ? (
-          <><strong className="text-cream">Clinical care / therapy referral.</strong> This resource may connect you with licensed mental-health professionals. SheWorriers does not provide therapy or crisis care.</>
+          <><strong className="text-cream">Clinical care / therapy referral.</strong> This resource may connect you with licensed mental-health professionals. SHE Warriors does not provide therapy or crisis care.</>
         ) : (
           <><strong className="text-cream">Community support / not clinical care.</strong> This resource provides peer, faith, mentoring, or community support and is not a substitute for professional mental-health treatment.</>
         )}
@@ -157,7 +157,7 @@ const TalkToSister = () => {
         <motion.div data-testid="navigator-success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-10">
           <p className="font-garamond text-3xl font-light italic text-cream">We're here, and we heard you.</p>
           <p className="mt-4 max-w-lg text-sm leading-relaxed text-parchment/75">
-            A SheWorriers Care Navigator will reach out the way you asked. You don't
+            A SHE Warriors Care Navigator will reach out the way you asked. You don't
             have to figure this out alone.
           </p>
         </motion.div>
@@ -212,7 +212,7 @@ const TalkToSister = () => {
             <label className="flex items-start gap-3 text-xs leading-relaxed text-parchment/70">
               <input data-testid="navigator-consent" type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)}
                 className="mt-0.5 h-4 w-4 accent-[#D4AF37]" />
-              I consent to being contacted by a SheWorriers Care Navigator about my request.
+              I consent to being contacted by a SHE Warriors Care Navigator about my request.
             </label>
           </div>
           <div className="sm:col-span-2">
@@ -225,7 +225,7 @@ const TalkToSister = () => {
               Please do not use this form for emergencies or urgent safety concerns.
             </p>
             <p className="mt-3 max-w-2xl text-xs leading-relaxed text-parchment/60">
-              We are here to listen, connect, and encourage. SheWorriers Care Navigators are not
+              We are here to listen, connect, and encourage. SHE Warriors Care Navigators are not
               therapists, medical providers, attorneys, or crisis responders. If you are in
               immediate danger, call 911. In a mental-health crisis, call or text 988.
             </p>
@@ -301,7 +301,7 @@ export default function CareMap() {
       <section className="bg-plum/40">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-28">
           <Reveal className="text-center">
-            <p className="eyebrow">The SheWorriers Care Map</p>
+            <p className="eyebrow">The SHE Warriors Care Map</p>
             <h1 className="mt-6 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl lg:text-6xl">
               What do you need <em className="normal-case text-terracotta">today?</em>
             </h1>
@@ -470,7 +470,7 @@ export default function CareMap() {
                 </span>
                 <h3 className="mt-4 font-serif text-2xl font-semibold text-cream">Need help choosing?</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-parchment/75">
-                  Request follow-up from a SheWorriers Care Navigator. We'll help you find one realistic next step.
+                  Request follow-up from a SHE Warriors Care Navigator. We'll help you find one realistic next step.
                 </p>
                 <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-softgold group-hover:text-gold">
                   Request support <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -488,7 +488,7 @@ export default function CareMap() {
                 </span>
                 <h3 className="mt-4 font-serif text-2xl font-semibold text-cream">Don't do it alone.</h3>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-parchment/75">
-                  The next SheWorriers gathering, workshop, or Sister Circle is a warm first step.
+                  The next SHE Warriors gathering, workshop, or Sister Circle is a warm first step.
                 </p>
                 <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-softgold group-hover:text-gold">
                   See gatherings <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
