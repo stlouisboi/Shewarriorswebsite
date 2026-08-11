@@ -8,6 +8,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { Reveal } from "../components/Reveal";
+import { BenefitsGuide } from "../components/BenefitsGuide";
 import { PATHWAYS } from "../data/resources";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -17,7 +18,7 @@ const PATH_ICONS = {
   "mind-wellness": Heart,
   "faith-flourishing": BookOpen,
   "roots-wings": Sprout,
-  "safety-stability": HomeIcon,
+  "benefits-stability": HomeIcon,
 };
 
 const LOCATIONS = [
@@ -289,7 +290,7 @@ export default function CareMap() {
           </span>
           <button
             data-testid="care-urgent-link"
-            onClick={() => choose("safety-stability")}
+            onClick={() => choose("benefits-stability")}
             className="font-bold uppercase tracking-[0.2em] text-gold underline-offset-4 hover:underline"
           >
             Get urgent support →
@@ -309,7 +310,7 @@ export default function CareMap() {
               that feels closest to what you need right now.
             </p>
           </Reveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {big.map((p, i) => {
               const Icon = PATH_ICONS[p.id];
               return (
@@ -462,6 +463,8 @@ export default function CareMap() {
               </Link>
             </Reveal>
           </div>
+
+          {active.id === "benefits-stability" && <BenefitsGuide />}
 
           <Reveal delay={0.05}>
             <h3 className="mt-16 border-t border-white/10 pt-10 text-xs font-bold uppercase tracking-[0.3em] text-softgold">
