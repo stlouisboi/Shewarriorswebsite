@@ -8,11 +8,12 @@ from pathlib import Path
 from pydantic import BaseModel, Field, EmailStr
 from typing import Optional
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import stripe
 import asyncio
 import resend
 import requests as http_requests
+import jwt
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -322,6 +323,48 @@ async def paypal_capture_order(order_id: str):
     </p>"""
             await send_email(payer_email, "Your gift to SHE Warriors was received", body)
     return {"status": result.get("status"), "payment_status": "paid" if paid else "failed"}
+
+
+class PrayerTeamLogin(BaseModel):
+    passcode: str = Field(min_length=1, max_length=120)
+
+
+def _prayer_team_token() -> str:
+    payload = {
+        "role": "prayer_team",
+        "exp": datetime.now(timezone.utc) + timedelta(hours=12),
+    }
+    return jwt.encode(payload, os.environ["JWT_SECRET"], algorithm="HS256")
+
+
+def _verify_prayer_team(request: Request):
+    auth = request.headers.get("Authorization", "")
+    token = auth[7:] if auth.startswith("Bearer ") else None
+    if not token:
+        raise HTTPException(401, "Not authenticated")
+    try:
+        payload = jwt.decode(token, os.environ["JWT_SECRET"], algorithms=["HS256"])
+        if payload.get("role") != "prayer_team":
+            raise HTTPException(401, "Invalid token")
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(401, "Session expired — please sign in again")
+    except jwt.InvalidTokenError:
+        raise HTTPException(401, "Invalid token")
+
+
+@api_router.post("/prayer-team/login")
+async def prayer_team_login(input: PrayerTeamLogin):
+    if input.passcode != os.environ.get("PRAYER_TEAM_PASSCODE"):
+        raise HTTPException(401, "Incorrect passcode")
+    return {"token": _prayer_team_token()}
+
+
+@api_router.get("/prayer-team/requests")
+async def prayer_team_requests(request: Request):
+    _verify_prayer_team(request)
+    cursor = db.prayer_requests.find({}, {"_id": 0}).sort("created_at", -1).limit(200)
+    items = await cursor.to_list(length=200)
+    return {"requests": items}
 @api_router.post("/payments/checkout")
 async def create_checkout(req: CheckoutRequest):
     prices = stripe.Price.list(lookup_keys=[req.lookup_key], active=True, limit=1).data
