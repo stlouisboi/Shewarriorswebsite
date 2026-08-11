@@ -394,32 +394,32 @@ const GATHERINGS = [
   {
     name: "Sacred Sister Circles",
     tag: "Intimate study, prayer, and deep soul-care",
-    image: "https://plus.unsplash.com/premium_photo-1700070732070-6e3bd74f9a20?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "/assets/img/premium_photo-1700070732070-6e3bd74f9a20.jpg",
   },
   {
     name: "Roots & Wings Mentorship",
     tag: "Intergenerational guidance and connection",
-    image: "https://images.unsplash.com/photo-1521510186458-bbbda7aef46b?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "/assets/img/photo-1521510186458-bbbda7aef46b.jpg",
   },
   {
     name: "The Radiant Table",
     tag: "Brunches, gatherings, and shared laughter",
-    image: "https://plus.unsplash.com/premium_photo-1771416587253-88eb194c0d17?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "/assets/img/premium_photo-1771416587253-88eb194c0d17.jpg",
   },
   {
     name: "The Exhale Retreat",
     tag: "A sacred space to rest, worship, and renew",
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "/assets/img/photo-1544367567-0f2fcb009e0b.jpg",
   },
   {
     name: "Becoming Her",
     tag: "Mentorship and study group for teen girls",
-    image: "https://plus.unsplash.com/premium_photo-1663051145175-3c730be6adc3?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "/assets/img/premium_photo-1663051145175-3c730be6adc3.jpg",
   },
   {
     name: "Little Lights",
     tag: "Joyful discipleship resources for kids",
-    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?crop=entropy&cs=srgb&fm=jpg&q=85&w=800",
+    image: "/assets/img/photo-1588072432836-e10032774350.jpg",
   },
 ];
 
