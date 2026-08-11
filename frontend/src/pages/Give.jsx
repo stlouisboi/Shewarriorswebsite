@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HeartHandshake, Loader2 } from "lucide-react";
 import axios from "axios";
 import { Reveal } from "../components/Reveal";
+import { PayPalGive } from "../components/PayPalGive";
 import { IMAGES } from "../data/resources";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -108,6 +109,7 @@ export default function Give() {
                     )}
                     Give ${t.amount}
                   </button>
+                  <PayPalGive lookup={t.lookup} amount={t.amount} />
                 </div>
               </Reveal>
             ))}

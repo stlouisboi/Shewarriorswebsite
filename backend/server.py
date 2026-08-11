@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 import stripe
 import asyncio
 import resend
+import requests as http_requests
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -30,6 +31,21 @@ TAX_MODE = "full"
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
 SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "SheWorriers Foundation <onboarding@resend.dev>")
 resend.api_key = RESEND_API_KEY
+
+PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID", "")
+PAYPAL_SECRET = os.environ.get("PAYPAL_SECRET", "")
+PAYPAL_BASE = "https://api-m.paypal.com" if os.environ.get("PAYPAL_ENV") == "live" else "https://api-m.sandbox.paypal.com"
+
+
+def _paypal_token() -> str:
+    r = http_requests.post(
+        f"{PAYPAL_BASE}/v1/oauth2/token",
+        auth=(PAYPAL_CLIENT_ID, PAYPAL_SECRET),
+        data={"grant_type": "client_credentials"},
+        timeout=20,
+    )
+    r.raise_for_status()
+    return r.json()["access_token"]
 
 EMAIL_WRAPPER = """<div style="background:#2C1E16;padding:40px 20px;font-family:Georgia,serif;">
   <div style="max-width:520px;margin:0 auto;background:#3B222E;border:1px solid #C5A05944;padding:40px;">
@@ -216,6 +232,96 @@ async def join_sister_note(input: SisterNoteRequest):
     return {"ok": True}
 
 
+class PayPalOrderRequest(BaseModel):
+    lookup_key: str
+
+
+DONATION_AMOUNTS = {
+    "give_25": 25.0, "give_50": 50.0, "give_100": 100.0, "give_250": 250.0,
+}
+
+
+@api_router.post("/paypal/orders")
+async def paypal_create_order(input: PayPalOrderRequest):
+    if not PAYPAL_CLIENT_ID or not PAYPAL_SECRET:
+        raise HTTPException(503, "PayPal is not configured yet")
+    amount = DONATION_AMOUNTS.get(input.lookup_key)
+    if not amount:
+        raise HTTPException(400, "Unknown donation tier")
+    token = await asyncio.to_thread(_paypal_token)
+
+    def _create():
+        r = http_requests.post(
+            f"{PAYPAL_BASE}/v2/checkout/orders",
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+            json={
+                "intent": "CAPTURE",
+                "purchase_units": [{
+                    "reference_id": input.lookup_key,
+                    "description": "SheWorriers Foundation Donation",
+                    "amount": {"currency_code": "USD", "value": f"{amount:.2f}"},
+                }],
+            },
+            timeout=20,
+        )
+        r.raise_for_status()
+        return r.json()
+
+    order = await asyncio.to_thread(_create)
+    await db.payment_transactions.insert_one({
+        "session_id": order["id"],
+        "provider": "paypal",
+        "lookup_key": input.lookup_key,
+        "amount": amount,
+        "currency": "usd",
+        "status": "initiated",
+        "payment_status": "pending",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    })
+    return {"order_id": order["id"]}
+
+
+@api_router.post("/paypal/orders/{order_id}/capture")
+async def paypal_capture_order(order_id: str):
+    if not PAYPAL_CLIENT_ID or not PAYPAL_SECRET:
+        raise HTTPException(503, "PayPal is not configured yet")
+    token = await asyncio.to_thread(_paypal_token)
+
+    def _capture():
+        r = http_requests.post(
+            f"{PAYPAL_BASE}/v2/checkout/orders/{order_id}/capture",
+            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+            timeout=20,
+        )
+        r.raise_for_status()
+        return r.json()
+
+    result = await asyncio.to_thread(_capture)
+    paid = result.get("status") == "COMPLETED"
+    now = datetime.now(timezone.utc).isoformat()
+    update = await db.payment_transactions.update_one(
+        {"session_id": order_id, "payment_status": {"$ne": "paid"}},
+        {"$set": {"status": "completed" if paid else "failed",
+                  "payment_status": "paid" if paid else "failed",
+                  "updated_at": now}},
+    )
+    if paid and update.modified_count:
+        payer_email = (result.get("payer") or {}).get("email_address")
+        record = await db.payment_transactions.find_one({"session_id": order_id})
+        if payer_email and record:
+            amount = record.get("amount", 0)
+            body = f"""
+    <h1 style="color:#F5F0E6;font-size:26px;font-weight:normal;margin:0 0 16px;">Your gift was received.</h1>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0 0 12px;">
+      Thank you, sister. Your PayPal gift of <strong style="color:#D4AF37;">${amount:,.2f}</strong>
+      just became someone's steady ground — a care circle, a welcome bag, a mentor's hour.
+    </p>
+    <p style="color:#E8E1D5;font-size:15px;line-height:1.7;margin:0;">
+      "Those who look to Him are radiant; their faces are never covered with shame." — Psalm 34:5
+    </p>"""
+            await send_email(payer_email, "Your gift to SheWorriers was received", body)
+    return {"status": result.get("status"), "payment_status": "paid" if paid else "failed"}
 @api_router.post("/payments/checkout")
 async def create_checkout(req: CheckoutRequest):
     prices = stripe.Price.list(lookup_keys=[req.lookup_key], active=True, limit=1).data
