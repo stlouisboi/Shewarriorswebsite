@@ -68,7 +68,7 @@ export default function PrayerTeam() {
             <LockKeyhole className="mx-auto h-8 w-8 text-softgold" aria-hidden="true" />
             <p className="eyebrow mt-6">Prayer Team Only</p>
             <h1 className="mt-4 font-serif text-3xl font-semibold text-cream sm:text-4xl">
-              The Altar Inbox
+              Altar Call Inbox
             </h1>
             <p className="mt-4 text-sm leading-relaxed text-parchment/75">
               Every request here was left in confidence. Read gently, pray faithfully,
@@ -104,7 +104,7 @@ export default function PrayerTeam() {
               <div>
                 <p className="eyebrow flex items-center gap-2">
                   <Flame className="h-4 w-4" aria-hidden="true" />
-                  The Altar Inbox
+                  Altar Call Inbox
                 </p>
                 <h1 className="mt-3 font-serif text-3xl font-semibold text-cream sm:text-4xl">
                   Requests to pray over
