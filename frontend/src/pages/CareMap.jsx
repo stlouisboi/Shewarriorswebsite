@@ -310,8 +310,41 @@ export default function CareMap() {
               that feels closest to what you need right now.
             </p>
           </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {big.map((p, i) => {
+          {(() => {
+            const b = PATHWAYS.find((p) => p.id === "benefits-stability");
+            const Icon = PATH_ICONS[b.id];
+            return (
+              <Reveal>
+                <button
+                  onClick={() => choose(b.id)}
+                  data-testid={`pathway-${b.id}`}
+                  className={`group mt-14 flex w-full flex-col items-start gap-6 rounded-2xl border-2 p-8 text-left transition-all duration-500 hover:-translate-y-1 sm:flex-row sm:items-center sm:p-10 ${
+                    pathway === b.id
+                      ? "border-gold bg-plum shadow-[0_0_40px_rgba(212,175,55,0.15)]"
+                      : "border-gold/50 bg-plum/70 hover:border-gold hover:shadow-[0_0_40px_rgba(212,175,55,0.12)]"
+                  }`}
+                >
+                  <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gold/15 transition-colors duration-500 group-hover:bg-gold/25">
+                    <Icon className="h-7 w-7 text-gold" aria-hidden="true" />
+                  </span>
+                  <span className="flex-1">
+                    <span className="block text-xs font-bold uppercase tracking-[0.25em] text-softgold">
+                      Start here if today is heavy
+                    </span>
+                    <span className="mt-2 block font-serif text-3xl font-semibold text-cream sm:text-4xl">{b.name}</span>
+                    <span className="mt-3 block max-w-2xl text-sm leading-relaxed text-parchment/80 md:text-base">
+                      {b.short} — plus plain-language NC Medicaid and food assistance guides, and a benefits check to see what you qualify for.
+                    </span>
+                  </span>
+                  <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gold px-7 py-3 text-xs font-bold uppercase tracking-[0.2em] text-ink transition-colors duration-300 group-hover:bg-softgold">
+                    {b.cta} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                </button>
+              </Reveal>
+            );
+          })()}
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {big.filter((p) => p.id !== "benefits-stability").map((p, i) => {
               const Icon = PATH_ICONS[p.id];
               return (
                 <Reveal key={p.id} delay={i * 0.08}>
