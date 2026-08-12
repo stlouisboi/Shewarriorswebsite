@@ -40,7 +40,7 @@ const NavColumn = ({ items, prefix }) => (
 );
 
 export const Footer = () => (
-  <footer data-testid="site-footer" className="border-t border-white/10 bg-ink">
+  <footer data-testid="site-footer" className="border-t border-white/10 bg-espresso">
     <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
       <div className="grid items-center gap-12 rounded-[2rem] border border-white/10 bg-plum/50 p-8 sm:p-14 lg:grid-cols-2">
         <div>
