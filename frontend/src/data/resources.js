@@ -33,7 +33,7 @@ export const PATHWAYS = [
     resources: [
       {
         name: "Start Here: Career Support",
-        description: "Our own résumé refresh checklist, career-planning worksheet, and mentor-interest pathway — made by SheWorriers for your first step.",
+        description: "Our own résumé refresh checklist, career-planning worksheet, and mentor-interest pathway — made by S.H.E. Warriors for your first step.",
         bestFor: "Career transition, job search, résumé refresh",
         available: "Triad / In person",
         cost: "Free",
@@ -111,7 +111,7 @@ export const PATHWAYS = [
     resources: [
       {
         name: "Start Here: Mind & Wellness",
-        description: "Our gentle self-care checklist and one-week exhale plan — small, doable steps for heavy seasons, made by SheWorriers.",
+        description: "Our gentle self-care checklist and one-week exhale plan — small, doable steps for heavy seasons, made by S.H.E. Warriors.",
         bestFor: "Overwhelm, burnout, where-do-I-start moments",
         available: "Virtual / this site",
         cost: "Free",

@@ -147,7 +147,7 @@ export const BenefitsGuide = () => (
 
     <Reveal>
       <div className="rounded-2xl border border-white/10 bg-ink/50 p-8 sm:p-10">
-        <p className="eyebrow">A SheWorriers service</p>
+        <p className="eyebrow">A S.H.E. Warriors service</p>
         <h3 className="mt-3 font-serif text-2xl font-semibold text-cream sm:text-3xl">The Next Step Desk</h3>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-parchment/80 md:text-base">
           Our volunteers make government assistance feel less confusing — at gatherings,

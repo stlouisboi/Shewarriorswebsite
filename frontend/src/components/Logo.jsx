@@ -17,7 +17,7 @@ export const Logo = ({ compact = false }) => (
     <LogoMark className={compact ? "h-12 w-12" : "h-16 w-16"} />
     <span className="flex flex-col leading-none">
       <span className="font-serif text-2xl sm:text-3xl font-semibold text-cream tracking-wide group-hover:text-softgold transition-colors duration-300">
-        SheWorriers
+        S.H.E. Warriors
       </span>
       <span className="mt-1 whitespace-nowrap font-sans text-[9px] uppercase tracking-[0.28em] text-softgold/80">
         Sisterhood · Healing · Empowerment

@@ -90,7 +90,7 @@ const PLACES = [
   { num: "02", icon: GraduationCap, name: "Mentor a Sister", tag: "For women ready to share wisdom, faith, professional experience, or life experience.", text: "Your story may be the answer to another woman's prayer.", cta: "Pass It Forward", target: "section-mentor" },
   { num: "03", icon: HandHeart, name: "Serve the Movement", tag: "For volunteers ready to bring time, skills, creativity, hospitality, or professional gifts.", text: "Bring your hands, heart, and gifts.", cta: "Share Your Gift", target: "section-serve" },
   { num: "04", icon: Handshake, name: "Partner With Us", tag: "For churches, schools, providers, businesses, nonprofits, and community organizations.", text: "We are building a network, not trying to become everything.", cta: "Build With Us", target: "section-partner" },
-  { num: "05", icon: HeartHandshake, name: "Fund the Mission", tag: "For donors, sponsors, and supporters helping SheWorriers grow programs, gatherings, and access.", text: "Help make room for another woman to flourish.", cta: "Help Set the Table", to: "/give" },
+  { num: "05", icon: HeartHandshake, name: "Fund the Mission", tag: "For donors, sponsors, and supporters helping S.H.E. Warriors grow programs, gatherings, and access.", text: "Help make room for another woman to flourish.", cta: "Help Set the Table", to: "/give" },
 ];
 
 const SEASONS = ["Teen", "College & Career", "Motherhood", "Transition", "Legacy"];
@@ -136,7 +136,7 @@ export default function GetInvolved() {
               Help us build what <em className="normal-case text-terracotta">women deserve.</em>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg">
-              SheWorriers is building a faith-filled sisterhood where women and girls can
+              S.H.E. Warriors is building a faith-filled sisterhood where women and girls can
               find community, spiritual growth, mentorship, career support, and pathways
               to mental wellness.
             </p>
@@ -207,7 +207,7 @@ export default function GetInvolved() {
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
           <SectionHead num="01" title="Join the Sisterhood" accent="Come as you are. Find your people.">
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-parchment/85">
-              This is why SheWorriers exists. Whatever season you're in and whatever
+              This is why S.H.E. Warriors exists. Whatever season you're in and whatever
               you're carrying, there is a circle here with your name on it.
             </p>
           </SectionHead>
@@ -313,7 +313,7 @@ export default function GetInvolved() {
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
           <SectionHead num="04" title="It Takes a Village to Build" accent="a Safe Place for Women to Flourish.">
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-parchment/85">
-              SheWorriers is a trusted connector and convener — not a counseling center,
+              S.H.E. Warriors is a trusted connector and convener — not a counseling center,
               employer, or church. Partners make the Care Map real.
             </p>
           </SectionHead>
