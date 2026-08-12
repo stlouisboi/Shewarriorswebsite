@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { Briefcase, Heart, BookOpen, ArrowRight, Flame } from "lucide-react";
+import { Briefcase, Heart, BookOpen, ArrowRight, Flame, Home as HomeIcon } from "lucide-react";
 import { Reveal } from "../components/Reveal";
 import { FounderNote } from "../components/FounderNote";
 
@@ -36,6 +36,26 @@ const Marquee = () => (
           <span className="h-1.5 w-1.5 rounded-full bg-gold/50" />
         </span>
       ))}
+    </div>
+  </div>
+);
+
+const LaunchRibbon = () => (
+  <div data-testid="launch-ribbon" className="border-y border-gold/30 bg-plum">
+    <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-3 px-6 py-5 text-center">
+      <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold">
+        The Radiant Table — Launch Brunch
+      </p>
+      <p className="text-sm text-parchment/80">
+        A Saturday this fall · Kernersville / Winston-Salem, NC · date announced soon
+      </p>
+      <Link
+        to="/gatherings"
+        data-testid="launch-ribbon-cta"
+        className="rounded-full bg-gold px-7 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-ink transition-colors duration-300 hover:bg-softgold"
+      >
+        Reserve My Seat
+      </Link>
     </div>
   </div>
 );
@@ -106,7 +126,7 @@ const Hero = () => {
             data-testid="hero-sit-with-us-cta"
             className="rounded-full border border-gold/60 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-gold transition-all duration-300 hover:bg-gold/10 hover:border-gold"
           >
-            Come Sit With Us
+            See Upcoming Gatherings
           </Link>
         </motion.div>
         <motion.div
@@ -147,6 +167,13 @@ const SUPPORT_CARDS = [
     cta: "Grow in Faith",
     to: "/care-map#faith-flourishing",
   },
+  {
+    icon: HomeIcon,
+    title: "Benefits & Stability",
+    text: "Help navigating Medicaid, food assistance, housing, utilities, and child care",
+    cta: "Find Practical Help",
+    to: "/care-map#benefits-stability",
+  },
 ];
 
 const SupportSection = () => (
@@ -161,11 +188,11 @@ const SupportSection = () => (
           <em className="normal-case text-terracotta">alone.</em>
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg">
-          Whether you need career direction, support for your mental well-being,
-          or a place to grow spiritually, we'll help you find a next step.
+          Find trusted next steps for career support, mental wellness, spiritual
+          growth, and benefits navigation — we'll help you find one.
         </p>
       </Reveal>
-      <div className="mt-16 grid gap-6 md:grid-cols-3">
+      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {SUPPORT_CARDS.map((c, i) => (
           <Reveal key={c.title} delay={i * 0.1}>
             <div
@@ -262,14 +289,13 @@ const AltarSection = () => {
     <section data-testid="altar-section" className="bg-plum">
       <div className="mx-auto max-w-3xl px-6 py-24 text-center sm:py-32">
         <Reveal>
-          <p className="eyebrow">Chapter 04 · The Altar</p>
+          <p className="eyebrow">Chapter 04 · Leave It at the Altar</p>
           <h2 className="mt-8 font-serif text-4xl font-semibold uppercase leading-[1.15] tracking-wide text-cream sm:text-5xl">
             Leave it <em className="normal-case text-terracotta">here.</em>
           </h2>
           <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-parchment/85 md:text-lg">
             Type a worry, a prayer, or a heavy thought. When you are ready,
-            release it. This space is completely private — nothing is saved,
-            nothing is sent.
+            release it. This reflection is private — it is not saved or sent.
           </p>
         </Reveal>
         <Reveal delay={0.1}>
@@ -363,7 +389,8 @@ const TransformationSection = () => (
         </h2>
         <p className="mt-8 max-w-md text-base leading-relaxed text-parchment/80 md:text-lg">
           We are building a sanctuary where heavy burdens are exchanged for deep
-          peace. Step by step, we walk together out of the shadows.
+          peace — through community, trusted resources, prayer, and mentorship.
+          Step by step, we walk together out of the shadows.
         </p>
       </Reveal>
       <Reveal delay={0.12}>
@@ -418,7 +445,7 @@ const GATHERINGS = [
   },
   {
     name: "Little Lights",
-    tag: "Joyful discipleship resources for kids",
+    tag: "Faith resources for girls ages 5–11",
     image: "/assets/img/photo-1588072432836-e10032774350.jpg",
   },
 ];
@@ -468,6 +495,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <LaunchRibbon />
       <Marquee />
       <SupportSection />
       <FoundationSection />

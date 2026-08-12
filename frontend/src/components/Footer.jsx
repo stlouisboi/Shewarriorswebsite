@@ -44,14 +44,16 @@ export const Footer = () => (
     <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
       <div className="grid items-center gap-12 rounded-[2rem] border border-white/10 bg-plum/50 p-8 sm:p-14 lg:grid-cols-2">
         <div>
-          <p className="eyebrow">Leave it at the altar</p>
+          <p className="eyebrow">Ask for Prayer</p>
           <h2 className="mt-5 font-serif text-3xl font-semibold leading-tight text-cream sm:text-4xl">
             A safe place for{" "}
             <em className="font-garamond font-light">your heavy things.</em>
           </h2>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-parchment/75 md:text-base">
-            You don't have to carry it alone. Share what's on your heart, and
-            our sisterhood will quietly cover you in prayer this week.
+            Your request will be received by our prayer team and covered in prayer
+            this week. Please do not share information that creates an immediate
+            safety concern — for urgent help, call or text 988, or call 911 for
+            immediate danger.
           </p>
         </div>
         <PrayerEngine />
@@ -85,7 +87,7 @@ export const Footer = () => (
               data-testid="footer-first-crown"
               className="flex items-center justify-between rounded-full border border-cream/30 px-8 py-4 text-xs font-bold uppercase tracking-[0.22em] text-cream transition-all duration-300 hover:border-softgold hover:text-softgold"
             >
-              The First Crown
+              The Founding Circle
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
