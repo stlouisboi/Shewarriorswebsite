@@ -26,7 +26,7 @@ export default function OurWhy() {
             <div className="mt-14 max-w-3xl rounded-2xl border border-white/10 bg-ink/50 p-8 sm:p-10">
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-softgold">What We're Building</p>
               <p className="mt-4 text-base leading-relaxed text-parchment/85 md:text-lg">
-                SHE Warriors Foundation is a faith-centered nonprofit created with
+                SheWorriers Foundation is a faith-centered nonprofit created with
                 Black women at its heart, rooted in Winston-Salem and serving the
                 Piedmont Triad. We connect women and girls to spiritual
                 community, mental-wellness support, career-building opportunities,

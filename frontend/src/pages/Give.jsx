@@ -29,7 +29,7 @@ const GIFT_BUILDS = [
   "Career and professional-development opportunities",
   "Community resource connections",
   "Retreats and faith-centered experiences",
-  "The SHE Warriors Care Map",
+  "The SheWorriers Care Map",
   "Scholarships and participation assistance",
 ];
 
@@ -67,7 +67,7 @@ export default function Give() {
               <em className="normal-case text-terracotta">build the table.</em>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg">
-              SHE Warriors Foundation is a faith-centered nonprofit based in
+              SheWorriers Foundation is a faith-centered nonprofit based in
               Winston-Salem, NC (501(c)(3) status pending approval). Your support
               helps us develop:
             </p>
@@ -161,7 +161,7 @@ export default function Give() {
               <div className="mt-6 grid gap-8 text-sm leading-relaxed text-parchment/75 sm:grid-cols-3">
                 <p>
                   <span className="mb-1 block text-xs font-bold uppercase tracking-[0.25em] text-softgold">By mail</span>
-                  SHE Warriors Foundation, P.O. Box 412, Winston-Salem, NC — we'll gratefully receipt every check.
+                  SheWorriers Foundation, P.O. Box 412, Winston-Salem, NC — we'll gratefully receipt every check.
                 </p>
                 <p>
                   <span className="mb-1 block text-xs font-bold uppercase tracking-[0.25em] text-softgold">Monthly circle</span>

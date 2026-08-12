@@ -15,7 +15,7 @@ If a request indicates someone may be in immediate danger, we may encourage that
   },
   {
     title: "3. Donations",
-    body: `When our giving portal launches, payment details will be processed by a PCI-compliant payment processor. SHE Warriors Foundation will never see or store your full card number. We will retain only the information needed to issue your tax-deductible receipt (name, email, and gift amount).`,
+    body: `When our giving portal launches, payment details will be processed by a PCI-compliant payment processor. SheWorriers Foundation will never see or store your full card number. We will retain only the information needed to issue your tax-deductible receipt (name, email, and gift amount).`,
   },
   {
     title: "4. Cookies and analytics",
@@ -31,7 +31,7 @@ If a request indicates someone may be in immediate danger, we may encourage that
   },
   {
     title: "7. Changes and contact",
-    body: `If we change this policy, we will post the updated version here with a new effective date. Questions can be sent to privacy@sheworriers.org or SHE Warriors Foundation, P.O. Box 412.`,
+    body: `If we change this policy, we will post the updated version here with a new effective date. Questions can be sent to privacy@sheworriers.org or SheWorriers Foundation, P.O. Box 412.`,
   },
 ];
 

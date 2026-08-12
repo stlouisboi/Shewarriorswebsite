@@ -3,7 +3,7 @@ import { Reveal } from "../components/Reveal";
 const SECTIONS = [
   {
     title: "1. About this site",
-    body: `This website is operated by SHE Warriors Foundation, a registered 501(c)(3) nonprofit organization. By using this site you agree to these terms. If you do not agree, please do not use the site.`,
+    body: `This website is operated by SheWorriers Foundation, a registered 501(c)(3) nonprofit organization. By using this site you agree to these terms. If you do not agree, please do not use the site.`,
   },
   {
     title: "2. Not medical, legal, or professional advice",
@@ -25,15 +25,15 @@ If you are in immediate danger, call 911. If you are in emotional distress or cr
   },
   {
     title: "6. Intellectual property",
-    body: `The SHE Warriors name, logo, and the text and design of this site belong to SHE Warriors Foundation. You may share links to our pages freely; please do not reproduce our content or branding for commercial purposes without written permission.`,
+    body: `The SheWorriers name, logo, and the text and design of this site belong to SheWorriers Foundation. You may share links to our pages freely; please do not reproduce our content or branding for commercial purposes without written permission.`,
   },
   {
     title: "7. Limitation of liability",
-    body: `This site is provided "as is" without warranties of any kind. To the fullest extent permitted by law, SHE Warriors Foundation is not liable for any damages arising from your use of the site or reliance on its content.`,
+    body: `This site is provided "as is" without warranties of any kind. To the fullest extent permitted by law, SheWorriers Foundation is not liable for any damages arising from your use of the site or reliance on its content.`,
   },
   {
     title: "8. Changes and contact",
-    body: `We may update these terms from time to time; the version posted here is the current one. Questions: legal@sheworriers.org or SHE Warriors Foundation, P.O. Box 412.`,
+    body: `We may update these terms from time to time; the version posted here is the current one. Questions: legal@sheworriers.org or SheWorriers Foundation, P.O. Box 412.`,
   },
 ];
 

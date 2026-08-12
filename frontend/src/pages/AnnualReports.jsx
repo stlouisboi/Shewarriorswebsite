@@ -33,7 +33,7 @@ export default function AnnualReports() {
               Annual Report <em className="text-softgold">2025</em>
             </h1>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-parchment/85 md:text-lg">
-              Every dollar given to SHE Warriors is a trust. Here is exactly what
+              Every dollar given to SheWorriers is a trust. Here is exactly what
               that trust built last year — and where every dollar went.
             </p>
           </Reveal>
