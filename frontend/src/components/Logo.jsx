@@ -19,7 +19,7 @@ export const Logo = ({ compact = false }) => (
       <span className="font-serif text-2xl sm:text-3xl font-semibold text-cream tracking-wide group-hover:text-softgold transition-colors duration-300">
         S.H.E. Warriors
       </span>
-      <span className="mt-1 whitespace-nowrap font-sans text-[9px] uppercase tracking-[0.28em] text-softgold/80">
+      <span className="mt-1 whitespace-nowrap font-sans text-[11px] font-bold uppercase tracking-[0.22em] text-softgold sm:text-xs">
         Sisterhood · Healing · Empowerment
       </span>
     </span>
